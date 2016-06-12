@@ -6,6 +6,29 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Uid="Search" Icon="Find">
+                <AppBarButton.Flyout>
+                    <Flyout>
+                        
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            <AppBarButton x:Uid="GallerySource" Icon="Switch">
+                <AppBarButton.Flyout>
+                    <Flyout>
+                        
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            <AppBarButton x:Uid="MiscCode" Icon="Keyboard"/>
+            <AppBarButton x:Uid="Settings" Icon="Setting"/>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="About"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
