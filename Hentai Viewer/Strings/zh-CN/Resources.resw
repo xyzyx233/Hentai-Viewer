@@ -54,4 +54,16 @@
   <data name="GallerySource.Label" xml:space="preserve">
     <value>数据源</value>
   </data>
+  <data name="SettingsPivot.Title" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="StorageSetting.Header" xml:space="preserve">
+    <value>存储</value>
+  </data>
+  <data name="StorageFolder.Text" xml:space="preserve">
+    <value>存储文件夹</value>
+  </data>
+  <data name="ChangeButton.Content" xml:space="preserve">
+    <value>更改</value>
+  </data>
 </root>

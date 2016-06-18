@@ -13,8 +13,13 @@
                 <EntranceThemeTransition/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-        <Pivot>
-            <PivotItem>
+        <Pivot x:Uid="SettingsPivot">
+            <PivotItem x:Uid="StorageSetting">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" x:Uid="StorageFolder"/>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="{x:Bind CurrentSetting.StorageFolder, Mode=OneWay}"/>
+                    <Button x:Uid="ChangeButton" Click="{x:Bind CurrentSetting.ChangeStorageFolder}"/>
+                </StackPanel>
             </PivotItem>
         </Pivot>
     </Grid>
