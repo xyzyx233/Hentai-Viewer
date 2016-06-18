@@ -19,7 +19,7 @@ namespace Meowtrix.HentaiViewer
 
         private void NavigateToSetting(object sender, TappedRoutedEventArgs e)
         {
-            Frame.Navigate(typeof(Settings));
+            Frame.Navigate(typeof(SettingPage));
             e.Handled = true;
         }
     }
