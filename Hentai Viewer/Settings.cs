@@ -13,22 +13,22 @@ namespace Meowtrix.HentaiViewer
         public void Load() => LoadAsync().Wait();
         public async Task LoadAsync()
         {
-            if (StorageApplicationPermissions.FutureAccessList.ContainsItem("StorageFolder"))
-                _folder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync("StorageFolder", AccessCacheOptions.DisallowUserInput | AccessCacheOptions.FastLocationsOnly);
+            if (StorageApplicationPermissions.FutureAccessList.ContainsItem(nameof(StorageFolder)))
+                _folder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(nameof(StorageFolder), AccessCacheOptions.DisallowUserInput | AccessCacheOptions.FastLocationsOnly);
             else
             {
                 _folder = KnownFolders.SavedPictures;
-                StorageApplicationPermissions.FutureAccessList.AddOrReplace("StorageFolder", _folder);
+                StorageApplicationPermissions.FutureAccessList.AddOrReplace(nameof(StorageFolder), _folder);
             }
             var localsettings = ApplicationData.Current.LocalSettings;
             object tempval;
-            if (localsettings.Values.TryGetValue("GroupByAuthor", out tempval))
+            if (localsettings.Values.TryGetValue(nameof(GroupByAuthor), out tempval))
                 _groupbyauthor = (bool)tempval;
         }
         public void Save()
         {
             var localsettings = ApplicationData.Current.LocalSettings;
-            localsettings.Values["GroupByAuthor"] = _groupbyauthor;
+            localsettings.Values[nameof(GroupByAuthor)] = _groupbyauthor;
         }
 
         private StorageFolder _folder;
@@ -53,7 +53,6 @@ namespace Meowtrix.HentaiViewer
         public async void ChangeStorageFolder()
         {
             var picker = new FolderPicker();
-            picker.ViewMode = PickerViewMode.List;
             picker.FileTypeFilter.Add(".jpg");
             picker.FileTypeFilter.Add(".jpeg");
             picker.FileTypeFilter.Add(".png");
@@ -61,7 +60,7 @@ namespace Meowtrix.HentaiViewer
             StorageFolder folder = await picker.PickSingleFolderAsync();
             if (folder != null)
             {
-                StorageApplicationPermissions.FutureAccessList.AddOrReplace("StorageFolder", folder);
+                StorageApplicationPermissions.FutureAccessList.AddOrReplace(nameof(StorageFolder), folder);
                 _folder = folder;
                 OnPropertyChanged(nameof(StorageFolder));
             }
