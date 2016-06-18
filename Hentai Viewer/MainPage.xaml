@@ -23,7 +23,7 @@
                 </AppBarButton.Flyout>
             </AppBarButton>
             <AppBarButton x:Uid="MiscCode" Icon="Keyboard"/>
-            <AppBarButton x:Uid="Settings" Icon="Setting" Tapped="NavigateToSetting"/>
+            <AppBarButton x:Uid="Settings" Icon="Setting" Click="NavigateToSetting"/>
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="About"/>
             </CommandBar.SecondaryCommands>

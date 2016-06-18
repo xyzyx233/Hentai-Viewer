@@ -1,5 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
@@ -17,10 +17,9 @@ namespace Meowtrix.HentaiViewer
             NavigationCacheMode = NavigationCacheMode.Required;
         }
 
-        private void NavigateToSetting(object sender, TappedRoutedEventArgs e)
+        private void NavigateToSetting(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SettingPage));
-            e.Handled = true;
         }
     }
 }
