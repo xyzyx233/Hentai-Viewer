@@ -14,20 +14,41 @@ namespace Meowtrix.HentaiViewer
         public async Task LoadAsync()
         {
             if (StorageApplicationPermissions.FutureAccessList.ContainsItem("StorageFolder"))
-                _folder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync("StorageFolder");
+                _folder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync("StorageFolder", AccessCacheOptions.DisallowUserInput | AccessCacheOptions.FastLocationsOnly);
             else
             {
                 _folder = KnownFolders.SavedPictures;
                 StorageApplicationPermissions.FutureAccessList.AddOrReplace("StorageFolder", _folder);
             }
+            var localsettings = ApplicationData.Current.LocalSettings;
+            object tempval;
+            if (localsettings.Values.TryGetValue("GroupByAuthor", out tempval))
+                _groupbyauthor = (bool)tempval;
         }
         public void Save()
         {
-
+            var localsettings = ApplicationData.Current.LocalSettings;
+            localsettings.Values["GroupByAuthor"] = _groupbyauthor;
         }
 
         private StorageFolder _folder;
         public string StorageFolder => _folder.Path;
+
+        #region GroupByAuthor
+        private bool _groupbyauthor;
+        public bool GroupByAuthor
+        {
+            get { return _groupbyauthor; }
+            set
+            {
+                if (_groupbyauthor != value)
+                {
+                    _groupbyauthor = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
 
         public async void ChangeStorageFolder()
         {

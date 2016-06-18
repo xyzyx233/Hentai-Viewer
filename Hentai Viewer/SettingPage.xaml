@@ -18,7 +18,8 @@
                 <StackPanel Orientation="Vertical">
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" x:Uid="StorageFolder"/>
                     <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="{x:Bind CurrentSetting.StorageFolder, Mode=OneWay}"/>
-                    <Button x:Uid="ChangeButton" Click="{x:Bind CurrentSetting.ChangeStorageFolder}"/>
+                    <Button x:Uid="ChangeButton" Click="{x:Bind CurrentSetting.ChangeStorageFolder}" Margin="0,0,0,10"/>
+                    <ToggleSwitch x:Uid="GroupByAuthor" IsOn="{x:Bind CurrentSetting.GroupByAuthor, Mode=TwoWay}"/>
                 </StackPanel>
             </PivotItem>
         </Pivot>

@@ -66,4 +66,13 @@
   <data name="ChangeButton.Content" xml:space="preserve">
     <value>更改</value>
   </data>
+  <data name="GroupByAuthor.Header" xml:space="preserve">
+    <value>按作者分组</value>
+  </data>
+  <data name="GroupByAuthor.OnContent" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="GroupByAuthor.OffContent" xml:space="preserve">
+    <value>否</value>
+  </data>
 </root>
