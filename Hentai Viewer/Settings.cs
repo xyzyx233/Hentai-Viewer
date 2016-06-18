@@ -1,6 +1,6 @@
 ﻿namespace Meowtrix.HentaiViewer
 {
-    class Settings
+    class Settings : NotificationObject
     {
         private Settings() { }
         public static Settings Current { get; } = new Settings();
