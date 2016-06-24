@@ -11,14 +11,7 @@
             <AppBarButton x:Uid="Search" Icon="Find">
                 <AppBarButton.Flyout>
                     <Flyout>
-                        
-                    </Flyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>
-            <AppBarButton x:Uid="GallerySource" Icon="Switch">
-                <AppBarButton.Flyout>
-                    <Flyout>
-                        
+
                     </Flyout>
                 </AppBarButton.Flyout>
             </AppBarButton>

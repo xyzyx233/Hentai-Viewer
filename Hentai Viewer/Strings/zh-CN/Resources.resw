@@ -51,9 +51,6 @@
   <data name="Search.Label" xml:space="preserve">
     <value>搜索</value>
   </data>
-  <data name="GallerySource.Label" xml:space="preserve">
-    <value>数据源</value>
-  </data>
   <data name="SettingsPivot.Title" xml:space="preserve">
     <value>设置</value>
   </data>
