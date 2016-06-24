@@ -72,4 +72,13 @@
   <data name="GroupByAuthor.OffContent" xml:space="preserve">
     <value>否</value>
   </data>
+  <data name="Username.Text" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="Password.Text" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Login.Content" xml:space="preserve">
+    <value>登录</value>
+  </data>
 </root>

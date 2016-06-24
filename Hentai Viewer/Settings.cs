@@ -65,5 +65,6 @@ namespace Meowtrix.HentaiViewer
                 OnPropertyChanged(nameof(StorageFolder));
             }
         }
+        public Sources.EhentaiSettings EhentaiSettings { get; } = new Sources.EhentaiSettings();
     }
 }
