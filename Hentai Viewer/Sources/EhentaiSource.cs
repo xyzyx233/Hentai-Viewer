@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Composition;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -8,6 +9,7 @@ using Windows.UI.Popups;
 
 namespace Meowtrix.HentaiViewer.Sources
 {
+    [Export(typeof(Composition.IGallery))]
     class EhentaiSource : Composition.IGallery
     {
         public string Name => "EHentai";
