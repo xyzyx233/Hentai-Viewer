@@ -62,6 +62,15 @@
           <source>登录</source>
           <target state="translated">Login</target>
         </trans-unit>
+        <trans-unit id="LoginFail" translate="yes" xml:space="preserve">
+          <source>登录失败</source>
+          <target state="translated">Login Fail</target>
+        </trans-unit>
+        <trans-unit id="OK" translate="yes" xml:space="preserve">
+          <source>确定</source>
+          <target state="translated">OK
+</target>
+        </trans-unit>
       </group>
     </body>
   </file>
