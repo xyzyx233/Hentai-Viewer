@@ -10,6 +10,7 @@ namespace Meowtrix.HentaiViewer
     {
         private Settings() { }
         public static Settings Current { get; } = new Settings();
+        public const string UAString = "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko";
         public void Load() => LoadAsync().Wait();
         public async Task LoadAsync()
         {

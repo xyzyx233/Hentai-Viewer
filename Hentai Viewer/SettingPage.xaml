@@ -25,9 +25,9 @@
             <PivotItem Header="ehentai">
                 <StackPanel Orientation="Vertical" MaxWidth="400">
                     <TextBlock x:Uid="Username"/>
-                    <TextBox Text="{x:Bind CurrentSetting.EhentaiSettings.Username}"/>
+                    <TextBox Text="{x:Bind CurrentSetting.EhentaiSettings.Username, Mode=TwoWay}"/>
                     <TextBlock x:Uid="Password"/>
-                    <PasswordBox Password="{x:Bind CurrentSetting.EhentaiSettings.Password}"/>
+                    <PasswordBox Password="{x:Bind CurrentSetting.EhentaiSettings.Password, Mode=TwoWay}"/>
                     <Button x:Uid="Login" Margin="0,10,0,0" HorizontalAlignment="Stretch" Click="{x:Bind CurrentSetting.EhentaiSettings.Login}"/>
                 </StackPanel>
             </PivotItem>
