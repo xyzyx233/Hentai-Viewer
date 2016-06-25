@@ -165,4 +165,10 @@
   <data name="OK" xml:space="preserve">
     <value>确定</value>
   </data>
+  <data name="LoginAs.Text" xml:space="preserve">
+    <value>已登录：</value>
+  </data>
+  <data name="Logout.Content" xml:space="preserve">
+    <value>退出登录</value>
+  </data>
 </root>

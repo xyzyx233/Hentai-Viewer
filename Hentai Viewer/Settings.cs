@@ -25,11 +25,13 @@ namespace Meowtrix.HentaiViewer
             object tempval;
             if (localsettings.Values.TryGetValue(nameof(GroupByAuthor), out tempval))
                 _groupbyauthor = (bool)tempval;
+            EhentaiSettings.Load(localsettings);
         }
         public void Save()
         {
             var localsettings = ApplicationData.Current.LocalSettings;
             localsettings.Values[nameof(GroupByAuthor)] = _groupbyauthor;
+            EhentaiSettings.Save(localsettings);
         }
 
         private StorageFolder _folder;

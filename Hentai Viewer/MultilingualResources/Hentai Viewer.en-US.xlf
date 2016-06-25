@@ -71,6 +71,14 @@
           <target state="translated">OK
 </target>
         </trans-unit>
+        <trans-unit id="LoginAs.Text" translate="yes" xml:space="preserve">
+          <source>已登录：</source>
+          <target state="translated">Login As: </target>
+        </trans-unit>
+        <trans-unit id="Logout.Content" translate="yes" xml:space="preserve">
+          <source>退出登录</source>
+          <target state="translated">Logout</target>
+        </trans-unit>
       </group>
     </body>
   </file>

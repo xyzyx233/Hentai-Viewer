@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using Windows.ApplicationModel.Resources;
+using Windows.Storage;
 using Windows.UI.Popups;
 
 namespace Meowtrix.HentaiViewer.Sources
@@ -46,6 +47,22 @@ namespace Meowtrix.HentaiViewer.Sources
         }
         #endregion
 
+        #region NickName
+        private string _nickname;
+        public string NickName
+        {
+            get { return _nickname; }
+            set
+            {
+                if (_nickname != value)
+                {
+                    _nickname = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         #region IsLoginEnabled
         private bool _isloginenabled = true;
         public bool IsLoginEnabled
@@ -73,6 +90,7 @@ namespace Meowtrix.HentaiViewer.Sources
                 {
                     _islogin = value;
                     OnPropertyChanged();
+                    //TODO:Update HttpClient
                 }
             }
         }
@@ -106,11 +124,11 @@ namespace Meowtrix.HentaiViewer.Sources
                             ipb_member_id = cookie.Value;
                         else if (cookie.Name == "ipb_pass_hash")
                             ipb_passhash = cookie.Value;
+                    string html;
+                    using (var reader = new StreamReader(wrs.GetResponseStream()))
+                        html = reader.ReadToEnd();
                     if (ipb_member_id == null || ipb_passhash == null)//login fail
                     {
-                        string html;
-                        using (var reader = new StreamReader(wrs.GetResponseStream()))
-                            html = reader.ReadToEnd();
                         string prestring = "The following errors were found:</div>\n\t<div class=\"tablepad\"><span class=\"postcolor\">";
                         html = html.Substring(html.IndexOf(prestring) + prestring.Length);
                         html = html.Substring(0, html.IndexOf("</span>"));
@@ -120,7 +138,13 @@ namespace Meowtrix.HentaiViewer.Sources
                         await dialog.ShowAsync();
                         IsLogin = false;
                     }
-                    else IsLogin = true;
+                    else
+                    {
+                        string prestring = "You are now logged in as: ";
+                        html = html.Substring(html.IndexOf(prestring) + prestring.Length);
+                        NickName = html.Substring(0, html.IndexOf("<br"));
+                        IsLogin = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -133,6 +157,35 @@ namespace Meowtrix.HentaiViewer.Sources
             {
                 IsLoginEnabled = true;
             }
+        }
+        public void Logout() => IsLogin = false;
+        public void Load(ApplicationDataContainer data)
+        {
+            var login = (ApplicationDataCompositeValue)data.Values["EHLogin"];
+            if (login != null)
+            {
+                IsLogin = (bool)login[nameof(IsLogin)];
+                Username = (string)login[nameof(Username)];
+                if (IsLogin)
+                {
+                    NickName = (string)login[nameof(NickName)];
+                    ipb_member_id = (string)login[nameof(ipb_member_id)];
+                    ipb_passhash = (string)login[nameof(ipb_passhash)];
+                }
+            }
+        }
+        public void Save(ApplicationDataContainer data)
+        {
+            var login = new ApplicationDataCompositeValue();
+            login[nameof(IsLogin)] = IsLogin;
+            login[nameof(Username)] = Username;
+            if (IsLogin)
+            {
+                login[nameof(NickName)] = NickName;
+                login[nameof(ipb_member_id)] = ipb_member_id;
+                login[nameof(ipb_passhash)] = ipb_passhash;
+            }
+            data.Values["EHLogin"] = login;
         }
     }
 }

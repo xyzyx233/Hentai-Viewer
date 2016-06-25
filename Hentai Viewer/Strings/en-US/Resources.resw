@@ -61,4 +61,10 @@
     <value>OK
 </value>
   </data>
+  <data name="LoginAs.Text" xml:space="preserve">
+    <value>Login As: </value>
+  </data>
+  <data name="Logout.Content" xml:space="preserve">
+    <value>Logout</value>
+  </data>
 </root>
