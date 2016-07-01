@@ -25,13 +25,15 @@ namespace Meowtrix.HentaiViewer
             object tempval;
             if (localsettings.Values.TryGetValue(nameof(GroupByAuthor), out tempval))
                 _groupbyauthor = (bool)tempval;
-            EhentaiSettings.Load(localsettings);
+            foreach (var gallery in Composition.GallerySourceHost.Instance.Sources)
+                gallery.LoadSettings(localsettings);
         }
         public void Save()
         {
             var localsettings = ApplicationData.Current.LocalSettings;
             localsettings.Values[nameof(GroupByAuthor)] = _groupbyauthor;
-            EhentaiSettings.Save(localsettings);
+            foreach (var gallery in Composition.GallerySourceHost.Instance.Sources)
+                gallery.SaveSettings(localsettings);
         }
 
         private StorageFolder _folder;
@@ -68,6 +70,5 @@ namespace Meowtrix.HentaiViewer
                 OnPropertyChanged(nameof(StorageFolder));
             }
         }
-        public Sources.EHentaiSettings EhentaiSettings { get; } = new Sources.EHentaiSettings();
     }
 }
