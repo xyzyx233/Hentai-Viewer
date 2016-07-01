@@ -14,7 +14,7 @@ namespace Meowtrix.HentaiViewer.Sources
     class EHentaiSource : Composition.IGallery
     {
         public string Name => "EHentai";
-        public UIElement SettingPage { get; } = new EHentaiSetting();
+        public UIElement SettingPage => new EHentaiSetting { Settings = SettingInstance };
         public static EHentaiSettings SettingInstance => Settings.Current.EhentaiSettings;
     }
     class EHentaiSettings : NotificationObject

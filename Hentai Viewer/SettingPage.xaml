@@ -5,16 +5,13 @@
       xmlns:local="using:Meowtrix.HentaiViewer"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
-    <Page.Resources>
-        <ResourceDictionary Source="StaticResources.xaml"/>
-    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-        <Pivot x:Uid="SettingsPivot">
+        <Pivot x:Uid="SettingsPivot" x:Name="pivot">
             <PivotItem x:Uid="StorageSetting">
                 <StackPanel Orientation="Vertical">
                     <TextBlock x:Uid="StorageFolder" Style="{ThemeResource SubtitleTextBlockStyle}"/>
@@ -23,36 +20,6 @@
                             Margin="0,0,0,10"
                             Click="{x:Bind CurrentSetting.ChangeStorageFolder}"/>
                     <ToggleSwitch x:Uid="GroupByAuthor" IsOn="{x:Bind CurrentSetting.GroupByAuthor, Mode=TwoWay}"/>
-                </StackPanel>
-            </PivotItem>
-            <PivotItem Header="ehentai">
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Width="400"
-                                HorizontalAlignment="Left"
-                                Orientation="Vertical"
-                                Visibility="{x:Bind CurrentSetting.EhentaiSettings.IsLogin, Mode=OneWay, Converter={StaticResource VisibilityConverter}, ConverterParameter=Reverse}">
-                        <TextBlock x:Uid="Username"/>
-                        <TextBox IsEnabled="{x:Bind CurrentSetting.EhentaiSettings.IsLoginEnabled, Mode=OneWay}" Text="{x:Bind CurrentSetting.EhentaiSettings.Username, Mode=TwoWay}"/>
-                        <TextBlock x:Uid="Password"/>
-                        <PasswordBox x:Name="ehpasswd"
-                                     IsEnabled="{x:Bind CurrentSetting.EhentaiSettings.IsLoginEnabled, Mode=OneWay}"
-                                     KeyDown="Password_KeyDown"
-                                     Password="{x:Bind CurrentSetting.EhentaiSettings.Password, Mode=TwoWay}"/>
-                        <Button x:Uid="Login"
-                                Margin="0,10,0,0"
-                                HorizontalAlignment="Stretch"
-                                AutomationProperties.AcceleratorKey="Enter"
-                                Click="{x:Bind CurrentSetting.EhentaiSettings.Login}"
-                                IsEnabled="{x:Bind CurrentSetting.EhentaiSettings.IsLoginEnabled, Mode=OneWay}"/>
-                        <ProgressBar IsIndeterminate="True" Visibility="{x:Bind CurrentSetting.EhentaiSettings.IsLoginEnabled, Mode=OneWay, Converter={StaticResource VisibilityConverter}, ConverterParameter=Reverse}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Visibility="{x:Bind CurrentSetting.EhentaiSettings.IsLogin, Mode=OneWay, Converter={StaticResource VisibilityConverter}}">
-                        <TextBlock x:Uid="LoginAs" VerticalAlignment="Center"/>
-                        <TextBlock VerticalAlignment="Center" Text="{x:Bind CurrentSetting.EhentaiSettings.NickName, Mode=OneWay}"/>
-                        <Button x:Uid="Logout"
-                                Margin="5,0,0,0"
-                                Click="{x:Bind CurrentSetting.EhentaiSettings.Logout}"/>
-                    </StackPanel>
                 </StackPanel>
             </PivotItem>
         </Pivot>

@@ -1,6 +1,4 @@
-﻿using Windows.System;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
+﻿using Windows.UI.Xaml.Controls;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -14,17 +12,13 @@ namespace Meowtrix.HentaiViewer
         public SettingPage()
         {
             this.InitializeComponent();
+            foreach (var gallery in Composition.GallerySourceHost.Instance.Sources)
+                pivot.Items.Add(new PivotItem
+                {
+                    Header = gallery.Name,
+                    Content = gallery.SettingPage
+                });
         }
         private Settings CurrentSetting { get; } = Settings.Current;
-
-        private void Password_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.Key == VirtualKey.Enter)
-            {
-                if (sender == ehpasswd)
-                    CurrentSetting.EhentaiSettings.Login();
-                e.Handled = true;
-            }
-        }
     }
 }

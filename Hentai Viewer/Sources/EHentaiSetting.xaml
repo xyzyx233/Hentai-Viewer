@@ -1,15 +1,36 @@
-﻿<UserControl
-    x:Class="Meowtrix.HentaiViewer.Sources.EHentaiSetting"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Meowtrix.HentaiViewer.Sources"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
-
-    <Grid>
-
-    </Grid>
+﻿<UserControl x:Class="Meowtrix.HentaiViewer.Sources.EHentaiSetting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:Meowtrix.HentaiViewer.Sources"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300" d:DesignWidth="400"
+             mc:Ignorable="d">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Width="400"
+                    HorizontalAlignment="Left"
+                    Orientation="Vertical"
+                    Visibility="{x:Bind Settings.IsLogin, Mode=OneWay, Converter={StaticResource VisibilityConverter}, ConverterParameter=Reverse}">
+            <TextBlock x:Uid="Username"/>
+            <TextBox IsEnabled="{x:Bind Settings.IsLoginEnabled, Mode=OneWay}" Text="{x:Bind Settings.Username, Mode=TwoWay}"/>
+            <TextBlock x:Uid="Password"/>
+            <PasswordBox IsEnabled="{x:Bind Settings.IsLoginEnabled, Mode=OneWay}"
+                         KeyDown="Password_KeyDown"
+                         Password="{x:Bind Settings.Password, Mode=TwoWay}"/>
+            <Button x:Uid="Login"
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Stretch"
+                    AutomationProperties.AcceleratorKey="Enter"
+                    Click="{x:Bind Settings.Login}"
+                    IsEnabled="{x:Bind Settings.IsLoginEnabled, Mode=OneWay}"/>
+            <ProgressBar IsIndeterminate="True" Visibility="{x:Bind Settings.IsLoginEnabled, Mode=OneWay, Converter={StaticResource VisibilityConverter}, ConverterParameter=Reverse}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Visibility="{x:Bind Settings.IsLogin, Mode=OneWay, Converter={StaticResource VisibilityConverter}}">
+            <TextBlock x:Uid="LoginAs" VerticalAlignment="Center"/>
+            <TextBlock VerticalAlignment="Center" Text="{x:Bind Settings.NickName, Mode=OneWay}"/>
+            <Button x:Uid="Logout"
+                    Margin="5,0,0,0"
+                    Click="{x:Bind Settings.Logout}"/>
+        </StackPanel>
+    </StackPanel>
 </UserControl>
