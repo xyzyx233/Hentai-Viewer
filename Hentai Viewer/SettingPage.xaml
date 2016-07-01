@@ -22,6 +22,11 @@
                     <ToggleSwitch x:Uid="GroupByAuthor" IsOn="{x:Bind CurrentSetting.GroupByAuthor, Mode=TwoWay}"/>
                 </StackPanel>
             </PivotItem>
+            <PivotItem x:Uid="PreferenceSetting">
+                <ComboBox x:Uid="DefaultGallery"
+                          ItemsSource="{x:Bind CurrentSetting.GallerySources}"
+                          SelectedIndex="{x:Bind CurrentSetting.DefaultGalleryIndex, Mode=TwoWay}"/>
+            </PivotItem>
         </Pivot>
     </Grid>
 </Page>

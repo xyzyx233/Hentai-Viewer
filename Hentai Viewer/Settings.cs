@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
@@ -26,6 +27,9 @@ namespace Meowtrix.HentaiViewer
             object tempval;
             if (localsettings.Values.TryGetValue(nameof(GroupByAuthor), out tempval))
                 _groupbyauthor = (bool)tempval;
+            if (roamingsettings.Values.TryGetValue(nameof(DefaultGallery), out tempval))
+                DefaultGalleryName = (string)tempval;
+            else DefaultGalleryName = string.Empty;
             foreach (var gallery in Composition.GallerySourceHost.Instance.Sources)
                 gallery.LoadSettings(localsettings.CreateContainer(gallery.Name, ApplicationDataCreateDisposition.Always),
                     roamingsettings.CreateContainer(gallery.Name, ApplicationDataCreateDisposition.Always));
@@ -35,6 +39,7 @@ namespace Meowtrix.HentaiViewer
             var localsettings = ApplicationData.Current.LocalSettings;
             var roamingsettings = ApplicationData.Current.RoamingSettings;
             localsettings.Values[nameof(GroupByAuthor)] = _groupbyauthor;
+            roamingsettings.Values[nameof(DefaultGallery)] = DefaultGalleryName;
             foreach (var gallery in Composition.GallerySourceHost.Instance.Sources)
                 gallery.SaveSettings(localsettings.CreateContainer(gallery.Name, ApplicationDataCreateDisposition.Always),
                     roamingsettings.CreateContainer(gallery.Name, ApplicationDataCreateDisposition.Always));
@@ -74,5 +79,24 @@ namespace Meowtrix.HentaiViewer
                 OnPropertyChanged(nameof(StorageFolder));
             }
         }
+        public string[] GallerySources { get; } = Composition.GallerySourceHost.Instance.Sources.Select(x => x.Name).ToArray();
+
+        #region DefaultGallery
+        public int DefaultGalleryIndex
+        {
+            get { return Composition.GallerySourceHost.Instance.Sources.IndexOf(DefaultGallery); }
+            set { DefaultGallery = Composition.GallerySourceHost.Instance.Sources[value]; }
+        }
+        public string DefaultGalleryName
+        {
+            get { return DefaultGallery.Name; }
+            set
+            {
+                DefaultGallery = Composition.GallerySourceHost.Instance.Sources.FirstOrDefault(x => x.Name == value) ??
+                  Composition.GallerySourceHost.Instance.Sources[0];
+            }
+        }
+        public Composition.IGallery DefaultGallery { get; private set; }
+        #endregion
     }
 }

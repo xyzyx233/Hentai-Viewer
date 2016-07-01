@@ -79,6 +79,14 @@
           <source>退出登录</source>
           <target state="translated">Logout</target>
         </trans-unit>
+        <trans-unit id="PreferenceSetting.Header" translate="yes" xml:space="preserve">
+          <source>偏好</source>
+          <target state="translated">Preference</target>
+        </trans-unit>
+        <trans-unit id="DefaultGallery.Header" translate="yes" xml:space="preserve">
+          <source>默认源</source>
+          <target state="translated">Default Gallery</target>
+        </trans-unit>
       </group>
     </body>
   </file>

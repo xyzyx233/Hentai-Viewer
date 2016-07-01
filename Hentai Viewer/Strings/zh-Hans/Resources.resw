@@ -171,4 +171,10 @@
   <data name="Logout.Content" xml:space="preserve">
     <value>退出登录</value>
   </data>
+  <data name="PreferenceSetting.Header" xml:space="preserve">
+    <value>偏好</value>
+  </data>
+  <data name="DefaultGallery.Header" xml:space="preserve">
+    <value>默认源</value>
+  </data>
 </root>

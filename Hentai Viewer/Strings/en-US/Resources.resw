@@ -67,4 +67,10 @@
   <data name="Logout.Content" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="PreferenceSetting.Header" xml:space="preserve">
+    <value>Preference</value>
+  </data>
+  <data name="DefaultGallery.Header" xml:space="preserve">
+    <value>Default Gallery</value>
+  </data>
 </root>
