@@ -115,7 +115,13 @@
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="Sources\EhentaiSource.cs" />
+    <Compile Include="Sources\EHentaiSetting.xaml.cs">
+      <DependentUpon>EHentaiSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\EHentaiSource.cs" />
+    <Compile Include="Sources\NHentaiSetting.xaml.cs">
+      <DependentUpon>NHentaiSetting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sources\NHentaiSource.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +150,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sources\EHentaiSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sources\NHentaiSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

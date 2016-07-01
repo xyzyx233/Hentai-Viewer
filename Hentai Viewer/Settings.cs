@@ -22,16 +22,22 @@ namespace Meowtrix.HentaiViewer
                 StorageApplicationPermissions.FutureAccessList.AddOrReplace(nameof(StorageFolder), _folder);
             }
             var localsettings = ApplicationData.Current.LocalSettings;
+            var roamingsettings = ApplicationData.Current.RoamingSettings;
             object tempval;
             if (localsettings.Values.TryGetValue(nameof(GroupByAuthor), out tempval))
                 _groupbyauthor = (bool)tempval;
-            EhentaiSettings.Load(localsettings);
+            foreach (var gallery in Composition.GallerySourceHost.Instance.Sources)
+                gallery.LoadSettings(localsettings.CreateContainer(gallery.Name, ApplicationDataCreateDisposition.Always),
+                    roamingsettings.CreateContainer(gallery.Name, ApplicationDataCreateDisposition.Always));
         }
         public void Save()
         {
             var localsettings = ApplicationData.Current.LocalSettings;
+            var roamingsettings = ApplicationData.Current.RoamingSettings;
             localsettings.Values[nameof(GroupByAuthor)] = _groupbyauthor;
-            EhentaiSettings.Save(localsettings);
+            foreach (var gallery in Composition.GallerySourceHost.Instance.Sources)
+                gallery.SaveSettings(localsettings.CreateContainer(gallery.Name, ApplicationDataCreateDisposition.Always),
+                    roamingsettings.CreateContainer(gallery.Name, ApplicationDataCreateDisposition.Always));
         }
 
         private StorageFolder _folder;
@@ -68,6 +74,5 @@ namespace Meowtrix.HentaiViewer
                 OnPropertyChanged(nameof(StorageFolder));
             }
         }
-        public Sources.EhentaiSettings EhentaiSettings { get; } = new Sources.EhentaiSettings();
     }
 }

@@ -1,19 +1,25 @@
 ﻿using System;
+using System.Composition;
 using System.IO;
 using System.Net;
 using System.Text;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 
 namespace Meowtrix.HentaiViewer.Sources
 {
-    class EhentaiSource : Composition.IGallery
+    [Export(typeof(Composition.IGallery))]
+    class EHentaiSource : Composition.IGallery
     {
         public string Name => "EHentai";
-        public static EhentaiSettings SettingInstance => Settings.Current.EhentaiSettings;
+        public UIElement SettingPage => new EHentaiSetting { Settings = SettingInstance };
+        public static EHentaiSettings SettingInstance { get; } = new EHentaiSettings();
+        public void LoadSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata) => SettingInstance.Load(localdata, roamingdata);
+        public void SaveSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata) => SettingInstance.Save(localdata, roamingdata);
     }
-    class EhentaiSettings : NotificationObject
+    class EHentaiSettings : NotificationObject
     {
         #region Username
         private string _username;
@@ -159,9 +165,9 @@ namespace Meowtrix.HentaiViewer.Sources
             }
         }
         public void Logout() => IsLogin = false;
-        public void Load(ApplicationDataContainer data)
+        public void Load(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata)
         {
-            var login = (ApplicationDataCompositeValue)data.Values["EHLogin"];
+            var login = (ApplicationDataCompositeValue)localdata.Values["Login"];
             if (login != null)
             {
                 IsLogin = (bool)login[nameof(IsLogin)];
@@ -174,7 +180,7 @@ namespace Meowtrix.HentaiViewer.Sources
                 }
             }
         }
-        public void Save(ApplicationDataContainer data)
+        public void Save(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata)
         {
             var login = new ApplicationDataCompositeValue();
             login[nameof(IsLogin)] = IsLogin;
@@ -185,7 +191,7 @@ namespace Meowtrix.HentaiViewer.Sources
                 login[nameof(ipb_member_id)] = ipb_member_id;
                 login[nameof(ipb_passhash)] = ipb_passhash;
             }
-            data.Values["EHLogin"] = login;
+            localdata.Values["Login"] = login;
         }
     }
 }
