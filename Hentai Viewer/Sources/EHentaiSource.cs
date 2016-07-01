@@ -6,16 +6,18 @@ using System.Text;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 
 namespace Meowtrix.HentaiViewer.Sources
 {
     [Export(typeof(Composition.IGallery))]
-    class EhentaiSource : Composition.IGallery
+    class EHentaiSource : Composition.IGallery
     {
         public string Name => "EHentai";
-        public static EhentaiSettings SettingInstance => Settings.Current.EhentaiSettings;
+        public UIElement SettingPage { get; } = new EHentaiSetting();
+        public static EHentaiSettings SettingInstance => Settings.Current.EhentaiSettings;
     }
-    class EhentaiSettings : NotificationObject
+    class EHentaiSettings : NotificationObject
     {
         #region Username
         private string _username;
