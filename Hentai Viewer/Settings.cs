@@ -22,18 +22,22 @@ namespace Meowtrix.HentaiViewer
                 StorageApplicationPermissions.FutureAccessList.AddOrReplace(nameof(StorageFolder), _folder);
             }
             var localsettings = ApplicationData.Current.LocalSettings;
+            var roamingsettings = ApplicationData.Current.RoamingSettings;
             object tempval;
             if (localsettings.Values.TryGetValue(nameof(GroupByAuthor), out tempval))
                 _groupbyauthor = (bool)tempval;
             foreach (var gallery in Composition.GallerySourceHost.Instance.Sources)
-                gallery.LoadSettings(localsettings);
+                gallery.LoadSettings(localsettings.CreateContainer(gallery.Name, ApplicationDataCreateDisposition.Always),
+                    roamingsettings.CreateContainer(gallery.Name, ApplicationDataCreateDisposition.Always));
         }
         public void Save()
         {
             var localsettings = ApplicationData.Current.LocalSettings;
+            var roamingsettings = ApplicationData.Current.RoamingSettings;
             localsettings.Values[nameof(GroupByAuthor)] = _groupbyauthor;
             foreach (var gallery in Composition.GallerySourceHost.Instance.Sources)
-                gallery.SaveSettings(localsettings);
+                gallery.SaveSettings(localsettings.CreateContainer(gallery.Name, ApplicationDataCreateDisposition.Always),
+                    roamingsettings.CreateContainer(gallery.Name, ApplicationDataCreateDisposition.Always));
         }
 
         private StorageFolder _folder;

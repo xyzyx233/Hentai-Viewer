@@ -10,11 +10,11 @@ namespace Meowtrix.HentaiViewer.Sources
     {
         public string Name => "NHentai";
         public UIElement SettingPage => new NHentaiSetting();
-        public void LoadSettings(ApplicationDataContainer data)
+        public void LoadSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata)
         {
             //throw new NotImplementedException();
         }
-        public void SaveSettings(ApplicationDataContainer data)
+        public void SaveSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata)
         {
             //throw new NotImplementedException();
         }

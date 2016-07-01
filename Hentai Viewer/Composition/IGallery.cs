@@ -7,7 +7,7 @@ namespace Meowtrix.HentaiViewer.Composition
     {
         string Name { get; }
         UIElement SettingPage { get; }
-        void LoadSettings(ApplicationDataContainer data);
-        void SaveSettings(ApplicationDataContainer data);
+        void LoadSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata);
+        void SaveSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata);
     }
 }
