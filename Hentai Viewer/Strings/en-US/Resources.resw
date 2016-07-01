@@ -58,8 +58,7 @@
     <value>Login Fail</value>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>OK
-</value>
+    <value>OK</value>
   </data>
   <data name="LoginAs.Text" xml:space="preserve">
     <value>Login As: </value>
