@@ -6,8 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Page.BottomAppBar>
-        <CommandBar>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <CommandBar Grid.Row="1">
             <AppBarButton x:Uid="Search" Icon="Find">
                 <AppBarButton.Flyout>
                     <Flyout>
@@ -21,9 +25,5 @@
                 <AppBarButton x:Uid="About"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
     </Grid>
 </Page>
