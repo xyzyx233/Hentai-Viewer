@@ -4,13 +4,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="using:Meowtrix.HentaiViewer.Sources"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:root="using:Meowtrix.HentaiViewer"
              d:DesignHeight="300" d:DesignWidth="400"
              mc:Ignorable="d">
     <StackPanel Orientation="Vertical">
         <StackPanel Width="400"
                     HorizontalAlignment="Left"
-                    Orientation="Vertical"
-                    Visibility="{x:Bind Settings.IsLogin, Mode=OneWay, Converter={StaticResource VisibilityConverter}, ConverterParameter=Reverse}">
+                    root:XamlHelper.IsNotVisible="{x:Bind Settings.IsLogin, Mode=OneWay}"
+                    Orientation="Vertical">
             <TextBlock x:Uid="Username"/>
             <TextBox IsEnabled="{x:Bind Settings.IsLoginEnabled, Mode=OneWay}" Text="{x:Bind Settings.Username, Mode=TwoWay}"/>
             <TextBlock x:Uid="Password"/>
@@ -23,9 +24,9 @@
                     AutomationProperties.AcceleratorKey="Enter"
                     Click="{x:Bind Settings.Login}"
                     IsEnabled="{x:Bind Settings.IsLoginEnabled, Mode=OneWay}"/>
-            <ProgressBar IsIndeterminate="True" Visibility="{x:Bind Settings.IsLoginEnabled, Mode=OneWay, Converter={StaticResource VisibilityConverter}, ConverterParameter=Reverse}"/>
+            <ProgressBar root:XamlHelper.IsNotVisible="{x:Bind Settings.IsLoginEnabled, Mode=OneWay}" IsIndeterminate="True"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Visibility="{x:Bind Settings.IsLogin, Mode=OneWay, Converter={StaticResource VisibilityConverter}}">
+        <StackPanel root:XamlHelper.IsVisible="{x:Bind Settings.IsLogin, Mode=OneWay}" Orientation="Horizontal">
             <TextBlock x:Uid="LoginAs" VerticalAlignment="Center"/>
             <TextBlock VerticalAlignment="Center" Text="{x:Bind Settings.NickName, Mode=OneWay}"/>
             <Button x:Uid="Logout"

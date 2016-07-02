@@ -119,6 +119,7 @@
       <DependentUpon>NHentaiSetting.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sources\NHentaiSource.cs" />
+    <Compile Include="XamlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -154,10 +155,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sources\NHentaiSetting.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="StaticResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
