@@ -26,8 +26,8 @@
                         <Setter Target="content.(Grid.RowSpan)" Value="1"/>
                         <Setter Target="content.(Grid.Column)" Value="1"/>
                         <Setter Target="content.(Grid.ColumnSpan)" Value="1"/>
-                        <Setter Target="commands.Opacity" Value="1"/>
-                        <Setter Target="pagelist.Opacity" Value="1"/>
+                        <Setter Target="commands.Opacity" Value="0.5"/>
+                        <Setter Target="pagelist.Opacity" Value="0.5"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -67,8 +67,10 @@
                     Grid.Column="1"
                     Height="48"
                     HorizontalAlignment="Right"
+                    Background="{ThemeResource SystemControlHighlightAccentBrush}"
                     Orientation="Horizontal">
-            
+            <AppBarButton Icon="Download"/>
+            <AppBarToggleButton Icon="Favorite"/>
         </StackPanel>
         <ListView x:Name="pagelist"
                   Grid.RowSpan="2"
