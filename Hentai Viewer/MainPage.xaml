@@ -1,29 +1,79 @@
-﻿<Page
-    x:Class="Meowtrix.HentaiViewer.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Meowtrix.HentaiViewer"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+﻿<Page x:Class="Meowtrix.HentaiViewer.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Meowtrix.HentaiViewer"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <CommandBar Grid.Row="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="content.(Grid.Row)" Value="1"/>
+                        <Setter Target="content.(Grid.RowSpan)" Value="1"/>
+                        <Setter Target="content.(Grid.Column)" Value="1"/>
+                        <Setter Target="content.(Grid.ColumnSpan)" Value="1"/>
+                        <Setter Target="commands.Opacity" Value="1"/>
+                        <Setter Target="pagelist.Opacity" Value="1"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="content.(Grid.Row)" Value="0"/>
+                        <Setter Target="content.(Grid.RowSpan)" Value="2"/>
+                        <Setter Target="content.(Grid.Column)" Value="0"/>
+                        <Setter Target="content.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="commands.Opacity" Value="0"/>
+                        <Setter Target="pagelist.Opacity" Value="0"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid x:Name="content">
+            
+        </Grid>
+        <CommandBar Grid.Row="2" Grid.ColumnSpan="3">
             <AppBarButton x:Uid="Search" Icon="Find">
                 <AppBarButton.Flyout>
                     <Flyout>
-
+                        
                     </Flyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
             <AppBarButton x:Uid="MiscCode" Icon="Keyboard"/>
-            <AppBarButton x:Uid="Settings" Icon="Setting" Click="NavigateToSetting"/>
+            <AppBarButton x:Uid="Settings"
+                          Click="NavigateToSetting" Icon="Setting"/>
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="About"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
+        <StackPanel x:Name="commands"
+                    Grid.Column="1"
+                    Height="48"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            
+        </StackPanel>
+        <ListView x:Name="pagelist"
+                  Grid.RowSpan="2"
+                  Width="48">
+            
+        </ListView>
     </Grid>
 </Page>
