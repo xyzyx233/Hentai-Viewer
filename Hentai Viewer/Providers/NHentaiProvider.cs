@@ -3,7 +3,7 @@ using System.Composition;
 using Windows.Storage;
 using Windows.UI.Xaml;
 
-namespace Meowtrix.HentaiViewer.Sources
+namespace Meowtrix.HentaiViewer.Providers
 {
     [Export(typeof(Composition.IGallery))]
     class NHentaiSource : Composition.IGallery

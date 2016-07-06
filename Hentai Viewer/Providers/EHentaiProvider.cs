@@ -8,7 +8,7 @@ using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 
-namespace Meowtrix.HentaiViewer.Sources
+namespace Meowtrix.HentaiViewer.Providers
 {
     [Export(typeof(Composition.IGallery))]
     class EHentaiSource : Composition.IGallery
