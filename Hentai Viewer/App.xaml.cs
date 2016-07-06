@@ -4,6 +4,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 namespace Meowtrix.HentaiViewer
@@ -55,6 +56,11 @@ namespace Meowtrix.HentaiViewer
 
                 // 将框架放在当前窗口中
                 Window.Current.Content = rootFrame;
+
+                rootFrame.ContentTransitions = new TransitionCollection
+                {
+                    new NavigationThemeTransition { DefaultNavigationTransitionInfo = new DrillInNavigationTransitionInfo() }
+                };
 
                 SystemNavigationManager.GetForCurrentView().BackRequested += BackRequested;
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
