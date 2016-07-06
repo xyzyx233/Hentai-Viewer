@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:Meowtrix.HentaiViewer"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:Meowtrix.HentaiViewer.ViewModels"
       mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -15,6 +16,41 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Grid x:Name="content"/>
+        <CommandBar Grid.Row="2" Grid.ColumnSpan="3">
+            <AppBarButton x:Uid="Search" Icon="Find">
+                <AppBarButton.Flyout>
+                    <Flyout/>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            <AppBarButton x:Uid="MiscCode" Icon="Keyboard"/>
+            <AppBarButton x:Uid="Settings"
+                          Click="NavigateToSetting" Icon="Setting"/>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="About"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+        <StackPanel x:Name="commands"
+                    Grid.Column="1"
+                    Height="48"
+                    HorizontalAlignment="Right"
+                    Background="{ThemeResource SystemControlHighlightAccentBrush}"
+                    Orientation="Horizontal">
+            <AppBarButton Icon="Download"/>
+            <AppBarToggleButton Icon="Favorite"/>
+            <AppBarButton Icon="Clear"/>
+        </StackPanel>
+        <ListView x:Name="pagelist"
+                  Grid.RowSpan="2"
+                  Width="48"
+                  ItemsSource="{x:Bind ViewModel.Pages}"
+                  SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="vm:ViewPage">
+                    <ContentPresenter Content="{x:Bind Icon}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -45,37 +81,5 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <Grid x:Name="content">
-            
-        </Grid>
-        <CommandBar Grid.Row="2" Grid.ColumnSpan="3">
-            <AppBarButton x:Uid="Search" Icon="Find">
-                <AppBarButton.Flyout>
-                    <Flyout>
-                        
-                    </Flyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>
-            <AppBarButton x:Uid="MiscCode" Icon="Keyboard"/>
-            <AppBarButton x:Uid="Settings"
-                          Click="NavigateToSetting" Icon="Setting"/>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="About"/>
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
-        <StackPanel x:Name="commands"
-                    Grid.Column="1"
-                    Height="48"
-                    HorizontalAlignment="Right"
-                    Background="{ThemeResource SystemControlHighlightAccentBrush}"
-                    Orientation="Horizontal">
-            <AppBarButton Icon="Download"/>
-            <AppBarToggleButton Icon="Favorite"/>
-        </StackPanel>
-        <ListView x:Name="pagelist"
-                  Grid.RowSpan="2"
-                  Width="48">
-            
-        </ListView>
     </Grid>
 </Page>

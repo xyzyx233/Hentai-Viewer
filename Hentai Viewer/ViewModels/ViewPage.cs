@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Windows.UI.Xaml;
 
 namespace Meowtrix.HentaiViewer.ViewModels
 {
-    abstract class ViewPage
+    interface ViewPage
     {
-
+        UIElement Icon { get; }
+        UIElement View { get; }
     }
 }
