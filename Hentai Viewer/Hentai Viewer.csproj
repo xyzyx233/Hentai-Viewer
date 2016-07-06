@@ -119,6 +119,8 @@
       <DependentUpon>NHentaiSetting.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sources\NHentaiSource.cs" />
+    <Compile Include="ViewModels\MainList.cs" />
+    <Compile Include="ViewModels\ViewPage.cs" />
     <Compile Include="XamlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +161,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
