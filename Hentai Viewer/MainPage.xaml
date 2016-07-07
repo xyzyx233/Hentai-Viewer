@@ -8,16 +8,10 @@
       mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid x:Name="content"/>
-        <CommandBar Grid.Row="2" Grid.ColumnSpan="3">
+        <CommandBar Grid.Row="1">
             <AppBarButton x:Uid="Search" Icon="Find">
                 <AppBarButton.Flyout>
                     <Flyout/>
@@ -31,26 +25,28 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
         <StackPanel x:Name="commands"
-                    Grid.Column="1"
                     Height="48"
                     HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
                     Background="{ThemeResource SystemControlHighlightAccentBrush}"
-                    Orientation="Horizontal">
+                    Opacity="0.5" Orientation="Horizontal">
             <AppBarButton Icon="Download"/>
             <AppBarToggleButton Icon="Favorite"/>
             <AppBarButton Icon="Clear"/>
         </StackPanel>
-        <ListView x:Name="pagelist"
-                  Grid.RowSpan="2"
-                  Width="48"
-                  ItemsSource="{x:Bind ViewModel.Pages}"
-                  SelectionMode="Single">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="vm:ViewPage">
-                    <ContentPresenter Content="{x:Bind Icon}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <SplitView x:Name="content"
+                   DisplayMode="CompactOverlay" OpenPaneLength="48"
+                   Tapped="content_Tapped">
+            <SplitView.Pane>
+                <ListView ItemsSource="{x:Bind ViewModel.Pages}" SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="vm:ViewPage">
+                            <ContentPresenter Content="{x:Bind Icon}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </SplitView.Pane>
+        </SplitView>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -58,12 +54,7 @@
                         <AdaptiveTrigger MinWindowWidth="720"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="content.(Grid.Row)" Value="1"/>
-                        <Setter Target="content.(Grid.RowSpan)" Value="1"/>
-                        <Setter Target="content.(Grid.Column)" Value="1"/>
-                        <Setter Target="content.(Grid.ColumnSpan)" Value="1"/>
-                        <Setter Target="commands.Opacity" Value="0.5"/>
-                        <Setter Target="pagelist.Opacity" Value="0.5"/>
+                        <Setter Target="content.CompactPaneLength" Value="48"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -71,12 +62,7 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="content.(Grid.Row)" Value="0"/>
-                        <Setter Target="content.(Grid.RowSpan)" Value="2"/>
-                        <Setter Target="content.(Grid.Column)" Value="0"/>
-                        <Setter Target="content.(Grid.ColumnSpan)" Value="2"/>
-                        <Setter Target="commands.Opacity" Value="0"/>
-                        <Setter Target="pagelist.Opacity" Value="0"/>
+                        <Setter Target="content.CompactPaneLength" Value="0"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
