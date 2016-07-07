@@ -101,7 +101,6 @@
     </Compile>
     <Compile Include="Composition\GallerySourceHost.cs" />
     <Compile Include="Composition\IGallery.cs" />
-    <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
