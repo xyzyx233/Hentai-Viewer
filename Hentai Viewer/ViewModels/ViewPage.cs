@@ -1,10 +1,9 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml.Controls;
 
 namespace Meowtrix.HentaiViewer.ViewModels
 {
     interface ViewPage
     {
-        UIElement Icon { get; }
-        UIElement View { get; }
+        Symbol HeaderIcon { get; }
     }
 }

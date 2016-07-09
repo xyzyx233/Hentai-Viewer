@@ -24,11 +24,5 @@ namespace Meowtrix.HentaiViewer
         }
 
         private ViewModels.MainList ViewModel { get; } = new ViewModels.MainList();
-
-        private void content_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            if (content.IsPaneOpen == false)
-                content.IsPaneOpen = true;
-        }
     }
 }

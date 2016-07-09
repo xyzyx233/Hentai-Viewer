@@ -24,48 +24,12 @@
                 <AppBarButton x:Uid="About"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
-        <StackPanel x:Name="commands"
-                    Height="48"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Background="{ThemeResource SystemControlHighlightAccentBrush}"
-                    Opacity="0.5" Orientation="Horizontal">
-            <AppBarButton Icon="Download"/>
-            <AppBarToggleButton Icon="Favorite"/>
-            <AppBarButton Icon="Clear"/>
-        </StackPanel>
-        <SplitView x:Name="content"
-                   DisplayMode="CompactOverlay" OpenPaneLength="48"
-                   Tapped="content_Tapped">
-            <SplitView.Pane>
-                <ListView ItemsSource="{x:Bind ViewModel.Pages}" SelectionMode="Single">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="vm:ViewPage">
-                            <ContentPresenter Content="{x:Bind Icon}"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </SplitView.Pane>
-        </SplitView>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="content.CompactPaneLength" Value="48"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="content.CompactPaneLength" Value="0"/>
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+        <Pivot ItemsSource="{x:Bind ViewModel.Pages}">
+            <Pivot.HeaderTemplate>
+                <DataTemplate x:DataType="vm:ViewPage">
+                    <SymbolIcon Symbol="{x:Bind HeaderIcon}"/>
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
+        </Pivot>
     </Grid>
 </Page>
