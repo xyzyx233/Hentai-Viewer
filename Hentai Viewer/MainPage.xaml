@@ -31,59 +31,55 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="PivotHeaderItem">
                                 <Grid x:Name="Grid">
-                                    <Border Name="headerItemBorder"
-                                            HorizontalAlignment="Stretch"
-                                            VerticalAlignment="Stretch">
-                                        <ContentPresenter x:Name="ContentPresenter"
-                                                          Margin="{TemplateBinding Padding}"
-                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                          Content="{TemplateBinding Content}"
-                                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                          FontFamily="{TemplateBinding FontFamily}"
-                                                          FontSize="{TemplateBinding FontSize}"
-                                                          FontWeight="{TemplateBinding FontWeight}"/>
-                                    </Border>
+                                    <ContentPresenter x:Name="ContentPresenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      Content="{TemplateBinding Content}"
+                                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                      FontFamily="{TemplateBinding FontFamily}"
+                                                      FontSize="{TemplateBinding FontSize}"
+                                                      FontWeight="{TemplateBinding FontWeight}"/>
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="SelectionStates">
                                             <VisualState x:Name="Unselected">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="headerItemBorder" Storyboard.TargetProperty="Background">
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Grid" Storyboard.TargetProperty="Background">
                                                         <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}"/>
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Selected">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="headerItemBorder" Storyboard.TargetProperty="Background">
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Grid" Storyboard.TargetProperty="Background">
                                                         <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListAccentLowBrush}"/>
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="UnselectedPointerOver">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="headerItemBorder" Storyboard.TargetProperty="Background">
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Grid" Storyboard.TargetProperty="Background">
                                                         <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListLowBrush}"/>
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="SelectedPointerOver">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="headerItemBorder" Storyboard.TargetProperty="Background">
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Grid" Storyboard.TargetProperty="Background">
                                                         <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListAccentMediumBrush}"/>
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="UnselectedPressed">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="headerItemBorder" Storyboard.TargetProperty="Background">
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Grid" Storyboard.TargetProperty="Background">
                                                         <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListMediumBrush}"/>
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="SelectedPressed">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="headerItemBorder" Storyboard.TargetProperty="Background">
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Grid" Storyboard.TargetProperty="Background">
                                                         <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListAccentHighBrush}"/>
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
