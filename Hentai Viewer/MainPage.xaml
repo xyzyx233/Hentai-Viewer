@@ -98,7 +98,13 @@
                 </DataTemplate>
             </Pivot.HeaderTemplate>
             <Pivot.ItemTemplateSelector>
-                <vm:ViewPageSelector/>
+                <vm:ViewPageSelector>
+                    <vm:ViewPageSelector.ListTemplate>
+                        <DataTemplate x:DataType="vm:ListPage">
+                            <ListView/>
+                        </DataTemplate>
+                    </vm:ViewPageSelector.ListTemplate>
+                </vm:ViewPageSelector>
             </Pivot.ItemTemplateSelector>
         </Pivot>
     </Grid>

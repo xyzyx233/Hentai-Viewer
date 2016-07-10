@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Composition;
+using Meowtrix.HentaiViewer.ViewModels;
 using Windows.Storage;
 using Windows.UI.Xaml;
 
@@ -17,6 +18,10 @@ namespace Meowtrix.HentaiViewer.Providers
         public void SaveSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata)
         {
             //throw new NotImplementedException();
+        }
+        public ListPage GetList(SearchInfo info)
+        {
+            throw new NotImplementedException();
         }
     }
 }

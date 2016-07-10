@@ -2,8 +2,9 @@
 
 namespace Meowtrix.HentaiViewer.ViewModels
 {
-    class DetailPage : ViewPage
+    public class DetailPage : ViewPage
     {
         public override Symbol HeaderIcon => Symbol.Library;
+        public GalleryEntryInfo Info { get; set; }
     }
 }

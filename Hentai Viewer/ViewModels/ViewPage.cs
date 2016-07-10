@@ -1,9 +1,11 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using Windows.UI.Xaml.Controls;
 
 namespace Meowtrix.HentaiViewer.ViewModels
 {
-    abstract class ViewPage
+    public abstract class ViewPage : NotificationObject
     {
         public abstract Symbol HeaderIcon { get; }
+        public Uri Uri { get; set; }
     }
 }
