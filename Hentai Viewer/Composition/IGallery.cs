@@ -1,4 +1,5 @@
-﻿using Meowtrix.HentaiViewer.ViewModels;
+﻿using System.Threading.Tasks;
+using Meowtrix.HentaiViewer.ViewModels;
 using Windows.Storage;
 using Windows.UI.Xaml;
 
@@ -10,6 +11,6 @@ namespace Meowtrix.HentaiViewer.Composition
         UIElement SettingPage { get; }
         void LoadSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata);
         void SaveSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata);
-        ListPage GetList(SearchInfo info = null);
+        Task<ListPage> GetListAsync(SearchInfo info = null);
     }
 }

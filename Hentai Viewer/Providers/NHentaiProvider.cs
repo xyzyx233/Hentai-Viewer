@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Composition;
+using System.Threading.Tasks;
 using Meowtrix.HentaiViewer.ViewModels;
 using Windows.Storage;
 using Windows.UI.Xaml;
@@ -19,7 +20,7 @@ namespace Meowtrix.HentaiViewer.Providers
         {
             //throw new NotImplementedException();
         }
-        public ListPage GetList(SearchInfo info)
+        public Task<ListPage> GetListAsync(SearchInfo info)
         {
             throw new NotImplementedException();
         }

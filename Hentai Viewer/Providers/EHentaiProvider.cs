@@ -3,6 +3,7 @@ using System.Composition;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using Meowtrix.HentaiViewer.ViewModels;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
@@ -19,7 +20,7 @@ namespace Meowtrix.HentaiViewer.Providers
         public static EHentaiSettings SettingInstance { get; } = new EHentaiSettings();
         public void LoadSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata) => SettingInstance.Load(localdata, roamingdata);
         public void SaveSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata) => SettingInstance.Save(localdata, roamingdata);
-        public ListPage GetList(SearchInfo info)
+        public Task<ListPage> GetListAsync(SearchInfo info)
         {
             throw new NotImplementedException();
         }
