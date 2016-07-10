@@ -99,6 +99,11 @@
             </Pivot.HeaderTemplate>
             <Pivot.ItemTemplateSelector>
                 <vm:ViewPageSelector>
+                    <vm:ViewPageSelector.PlaceHolderTamplate>
+                        <DataTemplate>
+                            <ProgressRing IsActive="True"/>
+                        </DataTemplate>
+                    </vm:ViewPageSelector.PlaceHolderTamplate>
                     <vm:ViewPageSelector.ListTemplate>
                         <DataTemplate x:DataType="vm:ListPage">
                             <ListView/>
