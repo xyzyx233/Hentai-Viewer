@@ -97,6 +97,9 @@
                     <SymbolIcon Symbol="{x:Bind HeaderIcon}"/>
                 </DataTemplate>
             </Pivot.HeaderTemplate>
+            <Pivot.ItemTemplateSelector>
+                <vm:ViewPageSelector/>
+            </Pivot.ItemTemplateSelector>
         </Pivot>
     </Grid>
 </Page>

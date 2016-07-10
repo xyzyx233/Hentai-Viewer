@@ -2,8 +2,8 @@
 
 namespace Meowtrix.HentaiViewer.ViewModels
 {
-    abstract class ViewPage
+    class ListPage : ViewPage
     {
-        public abstract Symbol HeaderIcon { get; }
+        public override Symbol HeaderIcon => Symbol.List;
     }
 }

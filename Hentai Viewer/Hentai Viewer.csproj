@@ -118,8 +118,11 @@
       <DependentUpon>NHentaiSetting.xaml</DependentUpon>
     </Compile>
     <Compile Include="Providers\NHentaiProvider.cs" />
+    <Compile Include="ViewModels\DetailPage.cs" />
+    <Compile Include="ViewModels\ListPage.cs" />
     <Compile Include="ViewModels\MainList.cs" />
     <Compile Include="ViewModels\ViewPage.cs" />
+    <Compile Include="ViewModels\ViewPageSelector.cs" />
     <Compile Include="XamlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
