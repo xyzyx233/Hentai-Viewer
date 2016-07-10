@@ -121,7 +121,7 @@
     <Compile Include="ViewModels\DetailPage.cs" />
     <Compile Include="ViewModels\GalleryEntryInfo.cs" />
     <Compile Include="ViewModels\ListPage.cs" />
-    <Compile Include="ViewModels\MainList.cs" />
+    <Compile Include="ViewModels\ViewPageList.cs" />
     <Compile Include="ViewModels\SearchInfo.cs" />
     <Compile Include="ViewModels\ViewPage.cs" />
     <Compile Include="ViewModels\ViewPageSelector.cs" />

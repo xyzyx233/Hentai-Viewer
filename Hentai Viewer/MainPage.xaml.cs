@@ -23,6 +23,6 @@ namespace Meowtrix.HentaiViewer
             Frame.Navigate(typeof(SettingPage));
         }
 
-        private ViewModels.MainList ViewModel { get; } = new ViewModels.MainList();
+        private ViewModels.ViewPageList ViewModel { get; } = new ViewModels.ViewPageList();
     }
 }
