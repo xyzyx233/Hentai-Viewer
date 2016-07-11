@@ -235,6 +235,7 @@ namespace Meowtrix.HentaiViewer.Providers
         {
             if (IsLogin)
             {
+                if (ipb_member_id == null || ipb_pass_hash == null) return;
                 HttpHost.CookieManager.SetCookie(new HttpCookie(nameof(ipb_member_id), "e-hentai.org", "/") { Value = ipb_member_id });
                 HttpHost.CookieManager.SetCookie(new HttpCookie(nameof(ipb_pass_hash), "e-hentai.org", "/") { Value = ipb_pass_hash });
                 HttpHost.CookieManager.SetCookie(new HttpCookie(nameof(ipb_member_id), "exhentai.org", "/") { Value = ipb_member_id });
