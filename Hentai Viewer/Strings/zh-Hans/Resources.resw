@@ -177,4 +177,13 @@
   <data name="DefaultGallery.Header" xml:space="preserve">
     <value>默认源</value>
   </data>
+  <data name="PreferExhentai.Header" xml:space="preserve">
+    <value>Exhentai</value>
+  </data>
+  <data name="PreferExhentai.OnContent" xml:space="preserve">
+    <value>优先使用exhentai</value>
+  </data>
+  <data name="PreferExhentai.OffContent" xml:space="preserve">
+    <value>优先使用e-hentai</value>
+  </data>
 </root>

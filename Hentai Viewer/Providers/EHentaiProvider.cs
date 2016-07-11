@@ -114,6 +114,22 @@ namespace Meowtrix.HentaiViewer.Providers
         }
         #endregion
 
+        #region PreferExhentai
+        private bool _preferexhentai;
+        public bool PreferExhentai
+        {
+            get { return _preferexhentai; }
+            set
+            {
+                if (_preferexhentai != value)
+                {
+                    _preferexhentai = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public string ipb_member_id { get; private set; }
         public string ipb_pass_hash { get; private set; }
         public async void Login()
@@ -196,6 +212,9 @@ namespace Meowtrix.HentaiViewer.Providers
                     ipb_pass_hash = (string)login[nameof(ipb_pass_hash)];
                 }
             }
+            object tempval;
+            if (localdata.Values.TryGetValue(nameof(PreferExhentai), out tempval))
+                PreferExhentai = (bool)tempval;
             UpdateHttpClient();
         }
         public void Save(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata)
@@ -210,6 +229,7 @@ namespace Meowtrix.HentaiViewer.Providers
                 login[nameof(ipb_pass_hash)] = ipb_pass_hash;
             }
             localdata.Values["Login"] = login;
+            localdata.Values[nameof(PreferExhentai)] = PreferExhentai;
         }
         private void UpdateHttpClient()
         {
@@ -222,7 +242,7 @@ namespace Meowtrix.HentaiViewer.Providers
             }
             else
             {
-                foreach(var cookie in HttpHost.CookieManager.GetCookies(new Uri("http://e-hentai.org")))
+                foreach (var cookie in HttpHost.CookieManager.GetCookies(new Uri("http://e-hentai.org")))
                     if (cookie.Name == nameof(ipb_member_id) || cookie.Name == nameof(ipb_pass_hash))
                         HttpHost.CookieManager.DeleteCookie(cookie);
                 foreach (var cookie in HttpHost.CookieManager.GetCookies(new Uri("http://exhentai.org")))

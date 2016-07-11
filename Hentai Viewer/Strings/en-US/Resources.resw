@@ -72,4 +72,13 @@
   <data name="DefaultGallery.Header" xml:space="preserve">
     <value>Default Gallery</value>
   </data>
+  <data name="PreferExhentai.Header" xml:space="preserve">
+    <value>Exhentai</value>
+  </data>
+  <data name="PreferExhentai.OnContent" xml:space="preserve">
+    <value>Prefer exhentai</value>
+  </data>
+  <data name="PreferExhentai.OffContent" xml:space="preserve">
+    <value>Prefer e-hentai</value>
+  </data>
 </root>
