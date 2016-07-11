@@ -109,7 +109,7 @@ namespace Meowtrix.HentaiViewer.Providers
         #endregion
 
         public string ipb_member_id { get; private set; }
-        public string ipb_passhash { get; private set; }
+        public string ipb_pass_hash { get; private set; }
         public async void Login()
         {
             IsLoginEnabled = false;
@@ -130,16 +130,16 @@ namespace Meowtrix.HentaiViewer.Providers
                 }
                 using (var wrs = (HttpWebResponse)await wrq.GetResponseAsync())
                 {
-                    ipb_member_id = ipb_passhash = null;
+                    ipb_member_id = ipb_pass_hash = null;
                     foreach (Cookie cookie in wrq.CookieContainer.GetCookies(new Uri("http://e-hentai.org")))
-                        if (cookie.Name == "ipb_member_id")
+                        if (cookie.Name == nameof(ipb_member_id))
                             ipb_member_id = cookie.Value;
-                        else if (cookie.Name == "ipb_pass_hash")
-                            ipb_passhash = cookie.Value;
+                        else if (cookie.Name == nameof(ipb_pass_hash))
+                            ipb_pass_hash = cookie.Value;
                     string html;
                     using (var reader = new StreamReader(wrs.GetResponseStream()))
                         html = reader.ReadToEnd();
-                    if (ipb_member_id == null || ipb_passhash == null)//login fail
+                    if (ipb_member_id == null || ipb_pass_hash == null)//login fail
                     {
                         string prestring = "The following errors were found:</div>\n\t<div class=\"tablepad\"><span class=\"postcolor\">";
                         html = html.Substring(html.IndexOf(prestring) + prestring.Length);
@@ -182,7 +182,7 @@ namespace Meowtrix.HentaiViewer.Providers
                 {
                     NickName = (string)login[nameof(NickName)];
                     ipb_member_id = (string)login[nameof(ipb_member_id)];
-                    ipb_passhash = (string)login[nameof(ipb_passhash)];
+                    ipb_pass_hash = (string)login[nameof(ipb_pass_hash)];
                 }
             }
         }
@@ -195,7 +195,7 @@ namespace Meowtrix.HentaiViewer.Providers
             {
                 login[nameof(NickName)] = NickName;
                 login[nameof(ipb_member_id)] = ipb_member_id;
-                login[nameof(ipb_passhash)] = ipb_passhash;
+                login[nameof(ipb_pass_hash)] = ipb_pass_hash;
             }
             localdata.Values["Login"] = login;
         }

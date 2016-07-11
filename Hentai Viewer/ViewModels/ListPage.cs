@@ -6,7 +6,7 @@ namespace Meowtrix.HentaiViewer.ViewModels
     public class ListPage : ViewPage
     {
         public override Symbol HeaderIcon => Symbol.List;
-        public ObservableCollection<GalleryEntryInfo> Enties { get; } = new ObservableCollection<GalleryEntryInfo>();
+        public ObservableCollection<GalleryEntryInfo> Entries { get; } = new ObservableCollection<GalleryEntryInfo>();
 
         #region CurrentPage
         private int _currentpage;
