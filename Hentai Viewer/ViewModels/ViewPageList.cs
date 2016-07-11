@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using MorseCode.ITask;
+using Meowtrix.ITask;
 
 namespace Meowtrix.HentaiViewer.ViewModels
 {

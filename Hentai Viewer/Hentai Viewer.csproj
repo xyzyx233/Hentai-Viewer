@@ -166,12 +166,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ITask\Source\MorseCode.ITask\_Root\_Root.csproj">
-      <Project>{2611a503-ae4b-4739-ad31-80685d786d26}</Project>
-      <Name>_Root</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
