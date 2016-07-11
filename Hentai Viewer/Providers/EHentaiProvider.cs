@@ -13,7 +13,7 @@ using Windows.UI.Xaml;
 namespace Meowtrix.HentaiViewer.Providers
 {
     [Export(typeof(Composition.IGallery))]
-    class EHentaiSource : Composition.IGallery
+    class EHentaiProvider : Composition.IGallery
     {
         public string Name => "EHentai";
         public UIElement SettingPage => new EHentaiSetting { Settings = SettingInstance };
