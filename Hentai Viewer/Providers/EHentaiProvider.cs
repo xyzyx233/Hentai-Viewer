@@ -109,7 +109,6 @@ namespace Meowtrix.HentaiViewer.Providers
                 {
                     _islogin = value;
                     OnPropertyChanged();
-                    //TODO:Update HttpClient
                 }
             }
         }
@@ -165,6 +164,7 @@ namespace Meowtrix.HentaiViewer.Providers
                         IsLogin = true;
                     }
                 }
+                UpdateHttpClient();
             }
             catch (Exception ex)
             {
@@ -177,7 +177,11 @@ namespace Meowtrix.HentaiViewer.Providers
                 IsLoginEnabled = true;
             }
         }
-        public void Logout() => IsLogin = false;
+        public void Logout()
+        {
+            IsLogin = false;
+            UpdateHttpClient();
+        }
         public void Load(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata)
         {
             var login = (ApplicationDataCompositeValue)localdata.Values["Login"];
@@ -192,6 +196,7 @@ namespace Meowtrix.HentaiViewer.Providers
                     ipb_pass_hash = (string)login[nameof(ipb_pass_hash)];
                 }
             }
+            UpdateHttpClient();
         }
         public void Save(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata)
         {
@@ -205,6 +210,25 @@ namespace Meowtrix.HentaiViewer.Providers
                 login[nameof(ipb_pass_hash)] = ipb_pass_hash;
             }
             localdata.Values["Login"] = login;
+        }
+        private void UpdateHttpClient()
+        {
+            if (IsLogin)
+            {
+                HttpHost.CookieManager.SetCookie(new HttpCookie(nameof(ipb_member_id), "e-hentai.org", "/") { Value = ipb_member_id });
+                HttpHost.CookieManager.SetCookie(new HttpCookie(nameof(ipb_pass_hash), "e-hentai.org", "/") { Value = ipb_pass_hash });
+                HttpHost.CookieManager.SetCookie(new HttpCookie(nameof(ipb_member_id), "exhentai.org", "/") { Value = ipb_member_id });
+                HttpHost.CookieManager.SetCookie(new HttpCookie(nameof(ipb_pass_hash), "exhentai.org", "/") { Value = ipb_pass_hash });
+            }
+            else
+            {
+                foreach(var cookie in HttpHost.CookieManager.GetCookies(new Uri("http://e-hentai.org")))
+                    if (cookie.Name == nameof(ipb_member_id) || cookie.Name == nameof(ipb_pass_hash))
+                        HttpHost.CookieManager.DeleteCookie(cookie);
+                foreach (var cookie in HttpHost.CookieManager.GetCookies(new Uri("http://exhentai.org")))
+                    if (cookie.Name == nameof(ipb_member_id) || cookie.Name == nameof(ipb_pass_hash))
+                        HttpHost.CookieManager.DeleteCookie(cookie);
+            }
         }
     }
 }
