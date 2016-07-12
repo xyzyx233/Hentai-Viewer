@@ -7,7 +7,7 @@ namespace Meowtrix.HentaiViewer.ViewModels
     {
         public IGallery Provider { get; set; }
         public SearchInfo SearchInfo { get; set; }
-        public IEnumerable<GalleryEntryInfo> Entries { get; set; }
+        public ICollection<GalleryEntryInfo> Entries { get; set; }
         public int PagesCount { get; set; }
     }
 }
