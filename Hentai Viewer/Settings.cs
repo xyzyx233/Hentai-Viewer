@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
@@ -12,19 +11,19 @@ namespace Meowtrix.HentaiViewer
         private Settings() { }
         public static Settings Current { get; } = new Settings();
         public const string UAString = "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko";
-        public void Load() => LoadAsync().Wait();
-        public async Task LoadAsync()
+        public void Load()
         {
-            if (StorageApplicationPermissions.FutureAccessList.ContainsItem(nameof(StorageFolder)))
-                _folder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(nameof(StorageFolder), AccessCacheOptions.DisallowUserInput | AccessCacheOptions.FastLocationsOnly);
-            else
-            {
-                _folder = KnownFolders.SavedPictures;
-                StorageApplicationPermissions.FutureAccessList.AddOrReplace(nameof(StorageFolder), _folder);
-            }
             var localsettings = ApplicationData.Current.LocalSettings;
             var roamingsettings = ApplicationData.Current.RoamingSettings;
             object tempval;
+            if (localsettings.Values.TryGetValue(nameof(StorageFolder), out tempval))
+                StorageFolder = (string)tempval;
+            else
+            {
+                var folder = KnownFolders.SavedPictures;
+                StorageApplicationPermissions.FutureAccessList.AddOrReplace(nameof(StorageFolder), folder);
+                StorageFolder = folder.Path;
+            }
             if (localsettings.Values.TryGetValue(nameof(GroupByAuthor), out tempval))
                 _groupbyauthor = (bool)tempval;
             if (roamingsettings.Values.TryGetValue(nameof(DefaultGallery), out tempval))
@@ -38,6 +37,7 @@ namespace Meowtrix.HentaiViewer
         {
             var localsettings = ApplicationData.Current.LocalSettings;
             var roamingsettings = ApplicationData.Current.RoamingSettings;
+            localsettings.Values[nameof(StorageFolder)] = _storagefolder;
             localsettings.Values[nameof(GroupByAuthor)] = _groupbyauthor;
             roamingsettings.Values[nameof(DefaultGallery)] = DefaultGalleryName;
             foreach (var gallery in Composition.GallerySourceHost.Instance.Sources)
@@ -45,8 +45,21 @@ namespace Meowtrix.HentaiViewer
                     roamingsettings.CreateContainer(gallery.Name, ApplicationDataCreateDisposition.Always));
         }
 
-        private StorageFolder _folder;
-        public string StorageFolder => _folder.Path;
+        #region StorageFolder
+        private string _storagefolder;
+        public string StorageFolder
+        {
+            get { return _storagefolder; }
+            set
+            {
+                if (_storagefolder != value)
+                {
+                    _storagefolder = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
 
         #region GroupByAuthor
         private bool _groupbyauthor;
@@ -75,8 +88,7 @@ namespace Meowtrix.HentaiViewer
             if (folder != null)
             {
                 StorageApplicationPermissions.FutureAccessList.AddOrReplace(nameof(StorageFolder), folder);
-                _folder = folder;
-                OnPropertyChanged(nameof(StorageFolder));
+                StorageFolder = folder.Path;
             }
         }
         public string[] GallerySources { get; } = Composition.GallerySourceHost.Instance.Sources.Select(x => x.Name).ToArray();
