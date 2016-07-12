@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Composition;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
 using Meowtrix.HentaiViewer.ViewModels;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
@@ -27,9 +29,42 @@ namespace Meowtrix.HentaiViewer.Providers
         public static EHentaiSettings SettingInstance { get; } = new EHentaiSettings();
         public void LoadSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata) => SettingInstance.Load(localdata, roamingdata);
         public void SaveSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata) => SettingInstance.Save(localdata, roamingdata);
-        public Task<SearchResult> SearchAsync(SearchInfo info, int page)
+        private string CurrentHostName
+            => SettingInstance.IsLogin && SettingInstance.PreferExhentai ?
+            "http://exhentai.org/" :
+            "http://g.e-hentai.org/";
+        public async Task<SearchResult> SearchAsync(SearchInfo info, int page)
         {
-            throw new NotImplementedException();
+            HtmlDocument document = new HtmlDocument();
+            var sb = new StringBuilder(CurrentHostName);
+            sb.Append($"?page={page - 1}");
+            //TODO:add query
+            try
+            {
+                document.LoadHtml(await HttpHost.Client.GetStringAsync(new Uri(sb.ToString())));
+                return new SearchResult
+                {
+                    Provider = this,
+                    SearchInfo = info,
+                    PagesCount = int.Parse(document.DocumentNode.SelectSingleNode("//table[@class='ptt']/tr/td[last()-1]/a").InnerText),
+                    Entries = document.DocumentNode.SelectNodes("//div[@class='itg']/div[@class='id1']")
+                        .Select(node => new GalleryEntryInfo
+                        {
+                            Title = node.SelectSingleNode("div[1]/a").InnerText,
+                            Uri = new Uri(node.SelectSingleNode("div[1]/a").Attributes["href"].Value),
+                            ThumbnailUri = new Uri(node.SelectSingleNode("div[2]/a/img").Attributes["src"].Value)
+                        }).ToArray()
+                };
+            }
+            catch
+            {
+                return new SearchResult
+                {
+                    Provider = this,
+                    SearchInfo = info,
+                    Entries = new GalleryEntryInfo[0]
+                };
+            }
         }
     }
     class EHentaiSettings : NotificationObject
