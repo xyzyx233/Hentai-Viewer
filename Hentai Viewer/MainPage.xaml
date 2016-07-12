@@ -106,7 +106,16 @@
                     </vm:ViewPageSelector.PlaceHolderTamplate>
                     <vm:ViewPageSelector.ListTemplate>
                         <DataTemplate x:DataType="vm:ListPage">
-                            <ListView/>
+                            <ListView ItemsSource="{x:Bind Entries}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:GalleryEntryInfo">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="{x:Bind Thumbnail}"/>
+                                            <TextBlock Text="{x:Bind Title}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </DataTemplate>
                     </vm:ViewPageSelector.ListTemplate>
                 </vm:ViewPageSelector>
