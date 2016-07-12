@@ -81,4 +81,7 @@
   <data name="PreferExhentai.OffContent" xml:space="preserve">
     <value>Prefer e-hentai</value>
   </data>
+  <data name="Refresh.Label" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
 </root>
