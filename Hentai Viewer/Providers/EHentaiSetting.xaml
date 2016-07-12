@@ -5,10 +5,12 @@
              xmlns:local="using:Meowtrix.HentaiViewer.Providers"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:root="using:Meowtrix.HentaiViewer"
+             x:Name="control"
              d:DesignHeight="300" d:DesignWidth="400"
              mc:Ignorable="d">
     <StackPanel Orientation="Vertical">
-        <StackPanel Width="400" MaxWidth="400"
+        <StackPanel Width="360"
+                    MaxWidth="{Binding ActualWidth, ElementName=control}"
                     HorizontalAlignment="Left"
                     root:XamlHelper.IsNotVisible="{x:Bind Settings.IsLogin, Mode=OneWay}"
                     Orientation="Vertical">
