@@ -20,7 +20,7 @@ namespace Meowtrix.HentaiViewer.Providers
         {
             //throw new NotImplementedException();
         }
-        public Task<ListPage> GetListAsync(SearchInfo info)
+        public Task<SearchResult> SearchAsync(SearchInfo info, int page)
         {
             throw new NotImplementedException();
         }

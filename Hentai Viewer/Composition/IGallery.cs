@@ -11,6 +11,6 @@ namespace Meowtrix.HentaiViewer.Composition
         UIElement SettingPage { get; }
         void LoadSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata);
         void SaveSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata);
-        Task<ListPage> GetListAsync(SearchInfo info = null);
+        Task<SearchResult> SearchAsync(SearchInfo info, int page = 1);
     }
 }

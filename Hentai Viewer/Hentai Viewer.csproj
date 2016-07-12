@@ -123,6 +123,7 @@
     <Compile Include="ViewModels\GalleryEntryInfo.cs" />
     <Compile Include="ViewModels\ListPage.cs" />
     <Compile Include="ViewModels\PlaceHolderPage.cs" />
+    <Compile Include="ViewModels\SearchResult.cs" />
     <Compile Include="ViewModels\ViewPageList.cs" />
     <Compile Include="ViewModels\SearchInfo.cs" />
     <Compile Include="ViewModels\ViewPage.cs" />

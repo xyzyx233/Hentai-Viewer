@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Meowtrix.HentaiViewer.Composition;
 using Windows.UI.Xaml.Controls;
 
 namespace Meowtrix.HentaiViewer.ViewModels
@@ -7,6 +8,15 @@ namespace Meowtrix.HentaiViewer.ViewModels
     {
         public override Symbol HeaderIcon => Symbol.List;
         public ObservableCollection<GalleryEntryInfo> Entries { get; } = new ObservableCollection<GalleryEntryInfo>();
+        public ListPage(SearchResult searchResult)
+        {
+            Provider = searchResult.Provider;
+            SearchInfo = searchResult.SearchInfo;
+            TotalPages = searchResult.PagesCount;
+            CurrentPage = 1;
+            foreach (var entry in searchResult.Entries)
+                Entries.Add(entry);
+        }
 
         #region CurrentPage
         private int _currentpage;
@@ -24,6 +34,24 @@ namespace Meowtrix.HentaiViewer.ViewModels
         }
         #endregion
 
-        public int TotalPages { get; set; }
+        #region TotalPages
+        private int _totalpages;
+        public int TotalPages
+        {
+            get { return _totalpages; }
+            set
+            {
+                if (_totalpages != value)
+                {
+                    _totalpages = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        public IGallery Provider { get; }
+        public SearchInfo SearchInfo { get; }
+        internal int frompage = 1, topage = 1;
     }
 }

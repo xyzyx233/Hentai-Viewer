@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Meowtrix.HentaiViewer.Composition;
 using Meowtrix.ITask;
 
 namespace Meowtrix.HentaiViewer.ViewModels
@@ -8,7 +10,7 @@ namespace Meowtrix.HentaiViewer.ViewModels
         public ObservableCollection<ViewPage> Pages { get; } = new ObservableCollection<ViewPage>();
         public ViewPageList()
         {
-            AddPageAsync(Settings.Current.DefaultGallery.GetListAsync().AsITask());
+            AddPageAsync(NewSearchPageAsync(Settings.Current.DefaultGallery, new SearchInfo()).AsITask());
         }
         public async void AddPageAsync(ITask<ViewPage> task)
         {
@@ -17,5 +19,7 @@ namespace Meowtrix.HentaiViewer.ViewModels
             var result = await task;
             Pages[position] = result;
         }
+        public async Task<ListPage> NewSearchPageAsync(IGallery provider, SearchInfo searchInfo)
+            => new ListPage(await provider.SearchAsync(searchInfo));
     }
 }
