@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="400"
              mc:Ignorable="d">
     <StackPanel Orientation="Vertical">
-        <StackPanel Width="400"
+        <StackPanel Width="400" MaxWidth="400"
                     HorizontalAlignment="Left"
                     root:XamlHelper.IsNotVisible="{x:Bind Settings.IsLogin, Mode=OneWay}"
                     Orientation="Vertical">
