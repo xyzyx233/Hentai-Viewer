@@ -118,6 +118,12 @@
                         </Setter.Value>
                     </Setter>
                 </Style>
+                <Style TargetType="PivotItem">
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Padding" Value="0"/>
+                </Style>
             </Pivot.Resources>
             <Pivot.HeaderTemplate>
                 <DataTemplate x:DataType="vm:ViewPage">
