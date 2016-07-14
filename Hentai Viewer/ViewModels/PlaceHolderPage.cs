@@ -5,5 +5,6 @@ namespace Meowtrix.HentaiViewer.ViewModels
     class PlaceHolderPage : ViewPage
     {
         public override Symbol HeaderIcon => Symbol.More;
+        public override bool CanRefresh => false;
     }
 }

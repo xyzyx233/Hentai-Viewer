@@ -35,7 +35,10 @@
                     </ContentControl.ContentTemplateSelector>
                 </ContentControl>
             </CommandBar.Content>
-            <AppBarButton x:Uid="Refresh" Icon="Refresh"/>
+            <AppBarButton x:Uid="Refresh"
+                          Click="{x:Bind ViewModel.RefreshSelectedAsync}"
+                          Icon="Refresh"
+                          IsEnabled="{x:Bind ViewModel.SelectedPage.CanRefresh, Mode=OneWay}"/>
             <AppBarButton x:Uid="Search" Icon="Find">
                 <AppBarButton.Flyout>
                     <Flyout/>

@@ -41,5 +41,13 @@ namespace Meowtrix.HentaiViewer.ViewModels
         }
         public async Task<ListPage> NewSearchPageAsync(IGallery provider, SearchInfo searchInfo)
             => new ListPage(await provider.SearchAsync(searchInfo));
+        public async void RefreshSelectedAsync()
+        {
+            int selected = SelectedIndex;
+            var oldpage = Pages[selected];
+            Pages[selected] = new PlaceHolderPage();
+            await oldpage.RefreshAsync();
+            Pages[selected] = oldpage;
+        }
     }
 }
