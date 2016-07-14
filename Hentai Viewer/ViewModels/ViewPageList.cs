@@ -5,9 +5,28 @@ using Meowtrix.ITask;
 
 namespace Meowtrix.HentaiViewer.ViewModels
 {
-    class ViewPageList
+    class ViewPageList : NotificationObject
     {
         public ObservableCollection<ViewPage> Pages { get; } = new ObservableCollection<ViewPage>();
+
+        #region SelectedIndex
+        private int _selectedindex;
+        public int SelectedIndex
+        {
+            get { return _selectedindex; }
+            set
+            {
+                if (_selectedindex != value)
+                {
+                    _selectedindex = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(SelectedPage));
+                }
+            }
+        }
+        #endregion
+
+        public ViewPage SelectedPage => Pages[SelectedIndex];
         public ViewPageList()
         {
             AddPageAsync(NewSearchPageAsync(Settings.Current.DefaultGallery, new SearchInfo()).AsITask());

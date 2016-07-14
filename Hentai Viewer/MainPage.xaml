@@ -25,7 +25,7 @@
                 <AppBarButton x:Uid="About"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
-        <Pivot ItemsSource="{x:Bind ViewModel.Pages}">
+        <Pivot ItemsSource="{x:Bind ViewModel.Pages}" SelectedIndex="{x:Bind ViewModel.SelectedIndex}">
             <Pivot.Resources>
                 <Style TargetType="PivotHeaderItem">
                     <Setter Property="Template">
