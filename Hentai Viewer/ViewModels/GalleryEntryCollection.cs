@@ -10,7 +10,7 @@ namespace Meowtrix.HentaiViewer.ViewModels
     internal class GalleryEntryCollection : ObservableCollection<GalleryEntryInfo>, ISupportIncrementalLoading
     {
         public ListPage Page { get; }
-        public GalleryEntryCollection(ListPage page)
+        public GalleryEntryCollection(ListPage page, IEnumerable<GalleryEntryInfo> entries) : base(entries)
         {
             Page = page;
         }
