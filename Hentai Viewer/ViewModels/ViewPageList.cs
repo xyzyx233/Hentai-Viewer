@@ -29,6 +29,7 @@ namespace Meowtrix.HentaiViewer.ViewModels
         public ViewPage SelectedPage => Pages[SelectedIndex];
         public ViewPageList()
         {
+            Pages.CollectionChanged += (_, __) => OnPropertyChanged(nameof(SelectedPage));
             AddPageAsync(NewSearchPageAsync(Settings.Current.DefaultGallery, new SearchInfo()).AsITask());
         }
         public async void AddPageAsync(ITask<ViewPage> task)

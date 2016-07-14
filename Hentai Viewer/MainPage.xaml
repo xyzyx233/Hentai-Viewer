@@ -11,7 +11,30 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <CommandBar Grid.Row="1">
+        <CommandBar Grid.Row="1" HorizontalContentAlignment="Center">
+            <CommandBar.Content>
+                <ContentControl Content="{x:Bind ViewModel.SelectedPage, Mode=OneWay}">
+                    <ContentControl.ContentTemplateSelector>
+                        <vm:ViewPageSelector>
+                            <vm:ViewPageSelector.PlaceHolderTamplate>
+                                <DataTemplate/>
+                            </vm:ViewPageSelector.PlaceHolderTamplate>
+                            <vm:ViewPageSelector.DetailTemplate>
+                                <DataTemplate/>
+                            </vm:ViewPageSelector.DetailTemplate>
+                            <vm:ViewPageSelector.ListTemplate>
+                                <DataTemplate x:DataType="vm:ListPage">
+                                    <TextBlock FontSize="24">
+                                        <Run FontSize="36" Text="{x:Bind CurrentPage, Mode=OneWay}"/>
+                                        <Run Text="/"/>
+                                        <Run Text="{x:Bind TotalPages}"/>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </vm:ViewPageSelector.ListTemplate>
+                        </vm:ViewPageSelector>
+                    </ContentControl.ContentTemplateSelector>
+                </ContentControl>
+            </CommandBar.Content>
             <AppBarButton x:Uid="Refresh" Icon="Refresh"/>
             <AppBarButton x:Uid="Search" Icon="Find">
                 <AppBarButton.Flyout>

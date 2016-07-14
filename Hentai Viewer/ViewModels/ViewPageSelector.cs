@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Meowtrix.HentaiViewer.ViewModels
@@ -11,10 +10,9 @@ namespace Meowtrix.HentaiViewer.ViewModels
         public DataTemplate PlaceHolderTamplate { get; set; }
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {
-            if (item is PlaceHolderPage) return PlaceHolderTamplate;
-            else if (item is ListPage) return ListTemplate;
+            if (item is ListPage) return ListTemplate;
             else if (item is DetailPage) return DetailTemplate;
-            else throw new ArgumentException(nameof(item));
+            else return PlaceHolderTamplate;
         }
     }
 }
