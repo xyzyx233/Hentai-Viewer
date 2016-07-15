@@ -6,6 +6,7 @@ namespace Meowtrix.HentaiViewer.ViewModels
 {
     public abstract class ViewPage : NotificationObject
     {
+        internal ViewPageList Container { get; set; }
         public abstract Symbol HeaderIcon { get; }
         public Uri Uri { get; set; }
         public virtual bool CanRefresh => true;

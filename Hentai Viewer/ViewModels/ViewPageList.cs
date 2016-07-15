@@ -38,6 +38,7 @@ namespace Meowtrix.HentaiViewer.ViewModels
             Pages.Add(new PlaceHolderPage());
             var result = await task;
             Pages[position] = result;
+            result.Container = this;
         }
         public async Task<ListPage> NewSearchPageAsync(IGallery provider, SearchInfo searchInfo)
             => new ListPage(await provider.SearchAsync(searchInfo));
