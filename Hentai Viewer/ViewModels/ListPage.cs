@@ -57,6 +57,22 @@ namespace Meowtrix.HentaiViewer.ViewModels
             }
         }
 
+        #region FirstVisibleIndex
+        private int _firstvisibleindex;
+        public int FirstVisibleIndex
+        {
+            get { return _firstvisibleindex; }
+            set
+            {
+                if (_firstvisibleindex != value)
+                {
+                    _firstvisibleindex = value;
+                    CurrentPage = value / itemsPerPage + frompage;
+                }
+            }
+        }
+        #endregion
+
         #region CurrentPage
         private int _currentpage;
         public int CurrentPage

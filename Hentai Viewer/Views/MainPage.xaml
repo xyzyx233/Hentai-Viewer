@@ -1,11 +1,11 @@
 ﻿<Page x:Class="Meowtrix.HentaiViewer.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="using:Meowtrix.HentaiViewer.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:Meowtrix.HentaiViewer"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:Meowtrix.HentaiViewer.ViewModels"
-      xmlns:controls="using:Meowtrix.HentaiViewer.Controls"
       mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -142,19 +142,20 @@
                     </vm:ViewPageSelector.PlaceHolderTamplate>
                     <vm:ViewPageSelector.ListTemplate>
                         <DataTemplate x:DataType="vm:ListPage">
-                            <controls:GalleryListView IsSwipeEnabled="False"
-                                      ItemsSource="{x:Bind Entries}"
-                                      SelectedIndex="{x:Bind SelectedIndex, Mode=OneWay}"
-                                      SelectionChanged="ListView_SelectionChanged"
-                                      SelectionMode="None">
-                                <ListView.ItemTemplate>
+                            <controls:GalleryListView FirstVisibleIndex="{x:Bind FirstVisibleIndex, Mode=TwoWay}"
+                                                      IsSwipeEnabled="False"
+                                                      ItemsSource="{x:Bind Entries}"
+                                                      SelectedIndex="{x:Bind SelectedIndex, Mode=OneWay}"
+                                                      SelectionChanged="ListView_SelectionChanged"
+                                                      SelectionMode="None">
+                                <controls:GalleryListView.ItemTemplate>
                                     <DataTemplate x:DataType="vm:GalleryEntryInfo">
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="{x:Bind Thumbnail}"/>
                                             <TextBlock Text="{x:Bind Title}"/>
                                         </StackPanel>
                                     </DataTemplate>
-                                </ListView.ItemTemplate>
+                                </controls:GalleryListView.ItemTemplate>
                             </controls:GalleryListView>
                         </DataTemplate>
                     </vm:ViewPageSelector.ListTemplate>
