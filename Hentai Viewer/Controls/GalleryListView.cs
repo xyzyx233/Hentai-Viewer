@@ -6,6 +6,17 @@ namespace Meowtrix.HentaiViewer.Controls
     public class GalleryListView : ListView
     {
         private ScrollViewer _scrollViewer;
+        private ItemsStackPanel _panel;
+
+        public int FirstVisibleIndex
+        {
+            get { return (int)GetValue(FirstVisibleIndexProperty); }
+            set { SetValue(FirstVisibleIndexProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for FirstVisibleIndex.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FirstVisibleIndexProperty =
+            DependencyProperty.Register(nameof(FirstVisibleIndex), typeof(int), typeof(GalleryListView), new PropertyMetadata(0));
 
         public GalleryListView()
         {
@@ -26,16 +37,18 @@ namespace Meowtrix.HentaiViewer.Controls
             _scrollViewer = this.FindFirstChild<ScrollViewer>();
             if (_scrollViewer != null)
                 _scrollViewer.ViewChanged += Sv_ViewChanged;
+            _panel = ItemsPanelRoot as ItemsStackPanel;
         }
 
         private async void Sv_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
         {
-            if (e.IsIntermediate == false && _scrollViewer.VerticalOffset < 1)
+            if (!e.IsIntermediate && _scrollViewer.VerticalOffset < 1)
             {
                 var source = ItemsSource as ISupportReversalLoading;
                 if (source?.HasMoreItems == true)
                     await source.LoadMoreItemsAsync(1);
             }
+            FirstVisibleIndex = _panel.FirstVisibleIndex;
         }
     }
 }
