@@ -84,4 +84,13 @@
   <data name="Refresh.Label" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="SelectPageDialog.Title" xml:space="preserve">
+    <value>Jump page</value>
+  </data>
+  <data name="SelectPageDialog.PrimaryButtonText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="SelectPageDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
 </root>

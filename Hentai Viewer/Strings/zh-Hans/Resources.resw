@@ -189,4 +189,13 @@
   <data name="Refresh.Label" xml:space="preserve">
     <value>刷新</value>
   </data>
+  <data name="SelectPageDialog.Title" xml:space="preserve">
+    <value>跳页</value>
+  </data>
+  <data name="SelectPageDialog.PrimaryButtonText" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="SelectPageDialog.SecondaryButtonText" xml:space="preserve">
+    <value>取消</value>
+  </data>
 </root>
