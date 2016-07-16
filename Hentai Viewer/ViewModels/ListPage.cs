@@ -44,7 +44,7 @@ namespace Meowtrix.HentaiViewer.ViewModels
                 else
                 {
                     int index = Container.SelectedIndex;
-                    Container.Pages[SelectedIndex] = new PlaceHolderPage();
+                    Container.Pages[index] = new PlaceHolderPage();
                     await RefreshAsync();
                     Container.Pages[index] = this;
                 }
