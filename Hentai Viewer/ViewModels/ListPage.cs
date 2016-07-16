@@ -25,6 +25,7 @@ namespace Meowtrix.HentaiViewer.ViewModels
         public override async Task RefreshAsync()
         {
             frompage = topage = CurrentPage;
+            SelectedIndex = -1;
             var searchResult = await Provider.SearchAsync(SearchInfo, CurrentPage);
             TotalPages = searchResult.PagesCount;
             _entries = new GalleryEntryCollection(this, searchResult.Entries);
@@ -45,6 +46,7 @@ namespace Meowtrix.HentaiViewer.ViewModels
                 {
                     int index = Container.SelectedIndex;
                     Container.Pages[index] = new PlaceHolderPage();
+                    SelectedIndex = -1;
                     await RefreshAsync();
                     Container.Pages[index] = this;
                 }
@@ -106,7 +108,7 @@ namespace Meowtrix.HentaiViewer.ViewModels
         #endregion
 
         #region SelectedIndex
-        private int _selectedindex;
+        private int _selectedindex = -1;
         public int SelectedIndex
         {
             get { return _selectedindex; }

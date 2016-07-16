@@ -42,7 +42,7 @@ namespace Meowtrix.HentaiViewer.Controls
 
         private async void Sv_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
         {
-            if (!e.IsIntermediate && _scrollViewer.VerticalOffset < 1)
+            if (_scrollViewer.VerticalOffset < 1)
             {
                 var source = ItemsSource as ISupportReversalLoading;
                 if (source?.HasMoreItems == true)
