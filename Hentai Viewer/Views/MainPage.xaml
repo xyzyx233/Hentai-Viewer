@@ -5,6 +5,7 @@
       xmlns:local="using:Meowtrix.HentaiViewer"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:Meowtrix.HentaiViewer.ViewModels"
+      xmlns:controls="using:Meowtrix.HentaiViewer.Controls"
       mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -141,7 +142,7 @@
                     </vm:ViewPageSelector.PlaceHolderTamplate>
                     <vm:ViewPageSelector.ListTemplate>
                         <DataTemplate x:DataType="vm:ListPage">
-                            <ListView IsSwipeEnabled="False"
+                            <controls:GalleryListView IsSwipeEnabled="False"
                                       ItemsSource="{x:Bind Entries}"
                                       SelectedIndex="{x:Bind SelectedIndex, Mode=OneWay}"
                                       SelectionChanged="ListView_SelectionChanged"
@@ -154,7 +155,7 @@
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
-                            </ListView>
+                            </controls:GalleryListView>
                         </DataTemplate>
                     </vm:ViewPageSelector.ListTemplate>
                 </vm:ViewPageSelector>
