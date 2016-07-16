@@ -162,9 +162,6 @@
   <data name="LoginFail" xml:space="preserve">
     <value>登录失败</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>确定</value>
-  </data>
   <data name="LoginAs.Text" xml:space="preserve">
     <value>已登录：</value>
   </data>

@@ -203,7 +203,6 @@ namespace Meowtrix.HentaiViewer.Providers
                         html = html.Substring(0, html.IndexOf("</span>"));
 
                         var dialog = new MessageDialog(html, resources.GetString("LoginFail"));
-                        dialog.Commands.Add(new UICommand(resources.GetString("OK"), _ => { }));
                         await dialog.ShowAsync();
                         IsLogin = false;
                     }
@@ -220,7 +219,6 @@ namespace Meowtrix.HentaiViewer.Providers
             catch (Exception ex)
             {
                 var dialog = new MessageDialog(ex.GetBaseException().Message, resources.GetString("LoginFail"));
-                dialog.Commands.Add(new UICommand(resources.GetString("OK"), _ => { }));
                 await dialog.ShowAsync();
             }
             finally
