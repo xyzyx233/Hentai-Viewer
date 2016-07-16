@@ -10,5 +10,6 @@ namespace Meowtrix.HentaiViewer.Providers
         {
             this.InitializeComponent();
         }
+        internal NHentaiSettings Settings { get; set; }
     }
 }

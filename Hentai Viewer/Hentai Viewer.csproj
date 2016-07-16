@@ -111,6 +111,7 @@
     <Compile Include="Common\HttpHost.cs" />
     <Compile Include="Controls\GalleryListView.cs" />
     <Compile Include="Controls\ISupportReversalLoading.cs" />
+    <Compile Include="Providers\NHentaiSettings.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

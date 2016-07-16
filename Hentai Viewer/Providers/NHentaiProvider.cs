@@ -13,22 +13,17 @@ namespace Meowtrix.HentaiViewer.Providers
     [Export(typeof(Composition.IGallery))]
     class NHentaiProvider : Composition.IGallery
     {
-        private const string hostname = "https://nhentai.net/";
+        private const string hostname = "//nhentai.net/";
         public string Name => "NHentai";
-        public UIElement SettingPage => new NHentaiSettingPage();
-        public void LoadSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata)
-        {
-            //throw new NotImplementedException();
-        }
-        public void SaveSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata)
-        {
-            //throw new NotImplementedException();
-        }
-        private static Uri hosturi = new Uri(hostname);
+        public UIElement SettingPage => new NHentaiSettingPage { Settings = SettingInstance };
+        public NHentaiSettings SettingInstance { get; } = new NHentaiSettings();
+        public void LoadSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata) => SettingInstance.Load(localdata, roamingdata);
+        public void SaveSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata) => SettingInstance.Save(localdata, roamingdata);
+        private Uri hosturi => new Uri(SettingInstance.Scheme + hostname);
         public async Task<SearchResult> SearchAsync(SearchInfo info, int page)
         {
             HtmlDocument document = new HtmlDocument();
-            var sb = new StringBuilder(hostname);
+            var sb = new StringBuilder(SettingInstance.Scheme + hostname);
             sb.Append($"?page={page}");
             //TODO:add query
             try
@@ -44,7 +39,7 @@ namespace Meowtrix.HentaiViewer.Providers
                         {
                             Title = node.SelectSingleNode("div").InnerText,
                             Uri = new Uri(hosturi, node.Attributes["href"].Value),
-                            ThumbnailUri = new Uri("https:" + node.SelectSingleNode("img").Attributes["src"].Value)
+                            ThumbnailUri = new Uri(SettingInstance.Scheme + node.SelectSingleNode("img").Attributes["src"].Value)
                         }).ToArray()
                 };
             }
