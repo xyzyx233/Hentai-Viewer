@@ -93,4 +93,7 @@
   <data name="SelectPageDialog.SecondaryButtonText" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="InvalidPageNumber" xml:space="preserve">
+    <value>Invalid page number</value>
+  </data>
 </root>

@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Meowtrix.HentaiViewer.Composition;
+using Windows.ApplicationModel.Resources;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 
 namespace Meowtrix.HentaiViewer.ViewModels
@@ -9,7 +12,7 @@ namespace Meowtrix.HentaiViewer.ViewModels
     {
         public override Symbol HeaderIcon => Symbol.List;
         private GalleryEntryCollection _entries;
-        public ICollection<GalleryEntryInfo> Entries => _entries;
+        public IList<GalleryEntryInfo> Entries => _entries;
         public ListPage(SearchResult searchResult)
         {
             Provider = searchResult.Provider;
@@ -26,6 +29,32 @@ namespace Meowtrix.HentaiViewer.ViewModels
             TotalPages = searchResult.PagesCount;
             _entries = new GalleryEntryCollection(this, searchResult.Entries);
             OnPropertyChanged(nameof(Entries));
+        }
+
+        public async void JumpAsync()
+        {
+            var dialog = new SelectPageDialog { CurrentPage = this.CurrentPage, TotalPages = this.TotalPages };
+            if (await dialog.ShowAsync() == ContentDialogResult.Secondary) return;
+            int destpage;
+            if (int.TryParse(dialog.Input, out destpage) && destpage > 0 && destpage <= TotalPages)
+            {
+                CurrentPage = destpage;
+                if (destpage >= frompage && destpage <= topage)
+                    SelectedIndex = (destpage - frompage) * itemsPerPage;
+                else
+                {
+                    int index = Container.SelectedIndex;
+                    Container.Pages[SelectedIndex] = new PlaceHolderPage();
+                    await RefreshAsync();
+                    Container.Pages[index] = this;
+                }
+            }
+            else
+            {
+                var res = new ResourceLoader();
+                var msg = new MessageDialog(res.GetString("InvalidPageNumber"));
+                await msg.ShowAsync();
+            }
         }
 
         #region CurrentPage
@@ -54,6 +83,22 @@ namespace Meowtrix.HentaiViewer.ViewModels
                 if (_totalpages != value)
                 {
                     _totalpages = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region SelectedIndex
+        private int _selectedindex;
+        public int SelectedIndex
+        {
+            get { return _selectedindex; }
+            set
+            {
+                if (_selectedindex != value)
+                {
+                    _selectedindex = value;
                     OnPropertyChanged();
                 }
             }
