@@ -109,6 +109,7 @@
     <Compile Include="Composition\GallerySourceHost.cs" />
     <Compile Include="Composition\IGallery.cs" />
     <Compile Include="Common\HttpHost.cs" />
+    <Compile Include="Controls\ISupportReversalLoading.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
