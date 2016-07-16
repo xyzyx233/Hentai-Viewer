@@ -11,7 +11,7 @@ namespace Meowtrix.HentaiViewer.Providers
     class NHentaiProvider : Composition.IGallery
     {
         public string Name => "NHentai";
-        public UIElement SettingPage => new NHentaiSetting();
+        public UIElement SettingPage => new NHentaiSettingPage();
         public void LoadSettings(ApplicationDataContainer localdata, ApplicationDataContainer roamingdata)
         {
             //throw new NotImplementedException();

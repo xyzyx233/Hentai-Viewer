@@ -6,9 +6,9 @@ using Windows.UI.Xaml.Input;
 
 namespace Meowtrix.HentaiViewer.Providers
 {
-    public sealed partial class EHentaiSetting : UserControl
+    public sealed partial class EHentaiSettingPage : UserControl
     {
-        public EHentaiSetting()
+        public EHentaiSettingPage()
         {
             this.InitializeComponent();
         }

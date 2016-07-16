@@ -114,6 +114,7 @@
     </Compile>
     <Compile Include="NotificationObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\EHentaiSettings.cs" />
     <Compile Include="SelectPageDialog.xaml.cs">
       <DependentUpon>SelectPageDialog.xaml</DependentUpon>
     </Compile>
@@ -121,12 +122,12 @@
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="Providers\EHentaiSetting.xaml.cs">
-      <DependentUpon>EHentaiSetting.xaml</DependentUpon>
+    <Compile Include="Providers\EHentaiSettingPage.xaml.cs">
+      <DependentUpon>EHentaiSettingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Providers\EHentaiProvider.cs" />
-    <Compile Include="Providers\NHentaiSetting.xaml.cs">
-      <DependentUpon>NHentaiSetting.xaml</DependentUpon>
+    <Compile Include="Providers\NHentaiSettingPage.xaml.cs">
+      <DependentUpon>NHentaiSettingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Providers\NHentaiProvider.cs" />
     <Compile Include="ViewModels\DetailPage.cs" />
@@ -174,11 +175,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Providers\EHentaiSetting.xaml">
+    <Page Include="Providers\EHentaiSettingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Providers\NHentaiSetting.xaml">
+    <Page Include="Providers\NHentaiSettingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
