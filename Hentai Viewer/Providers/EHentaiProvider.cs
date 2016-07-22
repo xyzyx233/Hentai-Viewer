@@ -34,6 +34,7 @@ namespace Meowtrix.HentaiViewer.Providers
             HtmlDocument document = new HtmlDocument();
             var sb = new StringBuilder(CurrentHostName);
             sb.Append($"?page={page - 1}");
+            sb.Append("&&f_search=over+qmr");
             //TODO:add query
             try
             {
